@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    // Fire Aime and Peek.
-    
+
+    #region Singlton
+    public static Controls instance;
+
+    void Awake() 
+    {
+        if(instance != null)
+        {
+            Debug.Log("MOre tham one instances of controls are existaing");
+        } 
+        instance = this; 
+    }
+    #endregion
+
+    // Fire Aime and Peek.    
     /*
     public KeyCode Fire;
     public KeyCode PeekLeft;
@@ -14,7 +27,9 @@ public class Controls : MonoBehaviour
     */
 
     public KeyCode Run;
+    public KeyCode meleeAttack;
+    public KeyCode Jump;
     public float mouseSensitivityX;
     public float mouseSensitivityY;
-    
+
 }

@@ -20,10 +20,11 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Stamina Values")]
     public float stamina;
-    public float maxStamina;     
+    public float maxStamina;
     public float rateOfStaminaLoseOnRun;
-    public float  rateOfStaminaLoseOnWalk;
-    public float  rateOfStaminaGain;
+    public float rateOfStaminaLoseOnWalk;
+    public float rateOfStaminaGain;
+    public float amountOfReductionOnJump;
 
 
     [Header("UI")]
@@ -42,7 +43,8 @@ public class PlayerStats : MonoBehaviour
     {
         staminaBar.fillRect.GetComponent<Image>().color = staminaColor;
         healthBar.fillRect.GetComponent<Image>().color = healthColor;
-        radiationBar.fillRect.GetComponent<Image>().color = radiationColor; 
+        radiationBar.fillRect.GetComponent<Image>().color = radiationColor;
+        
         staminaBar.maxValue = maxStamina;
         healthBar.maxValue = maxHealth;
         radiationBar.maxValue = maxRadiation;
@@ -51,11 +53,27 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        staminaBar.maxValue = maxStamina;
-        healthBar.maxValue = maxHealth;
-        radiationBar.maxValue = maxRadiation;
+        StaminaCalculation();
+        HealthCalculation();
+    }
 
-        if(Input.GetKey(GetComponent<Controls>().Run))
+    float ClampStats(float stat, float max)
+    {
+        if (stat > max)
+        {
+            stat = max;
+        }
+        if (stat <= 0)
+        {
+            stat = 0;
+        }
+        return stat;
+    }
+    void StaminaCalculation()
+    {
+        staminaBar.maxValue = maxStamina;
+
+        if (Input.GetKey(GetComponent<Controls>().Run))
         {
             isSprinting = true;
         }
@@ -63,7 +81,7 @@ public class PlayerStats : MonoBehaviour
         {
             isSprinting = false;
         }
-        if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
             isIdel = true;
         }
@@ -72,48 +90,46 @@ public class PlayerStats : MonoBehaviour
             isIdel = false;
         }
 
-        if(isSprinting)
+        if (isSprinting)
         {
-            stamina -= rateOfStaminaLoseOnRun/maxStamina;
-        } 
-        if(!isIdel && !isSprinting)
+            stamina -= rateOfStaminaLoseOnRun / maxStamina;
+        }
+        if (!isIdel && !isSprinting)
         {
-            stamina -= rateOfStaminaLoseOnWalk/maxStamina;
+            stamina -= rateOfStaminaLoseOnWalk / maxStamina;
         }
 
-        if(isIdel && !isSprinting)
+        if (isIdel && !isSprinting)
         {
-            stamina += rateOfStaminaGain/maxStamina;
+            stamina += rateOfStaminaGain / maxStamina;
         }
 
-        if(radiation > 0)
+        if(Input.GetKeyDown(GetComponent<Controls>().Jump) && stamina > amountOfReductionOnJump)
         {
-            health -= (rateOfHealthLoseByRadiation/maxHealth) * (radiation/50);
+            stamina -= amountOfReductionOnJump;
+        }
+        
+        stamina = ClampStats(stamina, maxStamina);
+        staminaBar.value = stamina;
+    }
+    void HealthCalculation()
+    {
+        healthBar.maxValue = maxHealth;
+        radiationBar.maxValue = maxRadiation;
+
+        if (radiation > 0)
+        {
+            health -= (rateOfHealthLoseByRadiation / maxHealth) * (radiation / 50);
         }
         else
         {
-            health += rateOfHealthGain/maxHealth;
+            health += rateOfHealthGain / maxHealth;
         }
+        
+        health = ClampStats(health, maxHealth);
+        radiation = ClampStats(radiation, maxRadiation);
 
-       health = ClampStats(health, maxHealth);
-       stamina = ClampStats(stamina, maxStamina);
-       radiation = ClampStats(radiation, maxRadiation);
-
-        staminaBar.value = stamina;
         healthBar.value = health;
         radiationBar.value = radiation;
-    }
-
-    float ClampStats(float stat, float max)
-    {
-        if(stat > max)
-        {
-            stat = max;
-        }
-        if(stat <= 0)
-        {
-            stat = 0;
-        }
-        return stat;
     }
 }

@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour {
-
+public class Movement : MonoBehaviour
+{
     public float speed;
     public float jumpSpeed;
     public float gravity;
     Vector3 moveDirection;
     public GameObject Cam;
     public float camHeight;
+    PlayerStats mainStats;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Use this for initialization
+    void Start()
+    {
+        mainStats = this.transform.parent.GetComponent<PlayerStats>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         Cursor.lockState = CursorLockMode.Locked;
 
         this.transform.rotation = Quaternion.Euler(0, Cam.transform.eulerAngles.y, 0);
@@ -29,12 +33,12 @@ public class Movement : MonoBehaviour {
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetKeyDown(Controls.instance.Jump) && mainStats.stamina > mainStats.amountOfReductionOnJump)
             {
                 moveDirection.y = jumpSpeed;
             }
 
-            if(Input.GetKey(this.transform.parent.GetComponent<Controls>().Run) && this.transform.parent.GetComponent<PlayerStats>().stamina > 0)
+            if (Input.GetKey(Controls.instance.Run) && mainStats.stamina > 0)
             {
                 moveDirection *= speed * 0.5f;
             }

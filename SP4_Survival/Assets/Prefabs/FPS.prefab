@@ -219,7 +219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.9715244}
   m_AnchorMax: {x: 0, y: 0.9715244}
-  m_AnchoredPosition: {x: 112.100006, y: 0.5}
+  m_AnchoredPosition: {x: 112.10004, y: 0.5}
   m_SizeDelta: {x: 209.3, y: 26.900024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &914713836
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -383,9 +383,11 @@ GameObject:
   - component: {fileID: 4611482799128210}
   - component: {fileID: 114929620470049260}
   - component: {fileID: 5129985532981561298}
+  - component: {fileID: 4833147580893760139}
+  - component: {fileID: 9091808553146265752}
   m_Layer: 0
   m_Name: FPS
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -419,15 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f354ed02f7294904ebb3c67539623324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fire: 323
-  PeekLeft: 113
-  PeekRight: 101
-  Aim: 324
   Run: 304
-  Sight2x: 48
-  Sight4x: 49
-  Sight6x: 51
-  Sight8x: 53
+  meleeAttack: 323
+  Jump: 32
   mouseSensitivityX: 2
   mouseSensitivityY: 2
 --- !u!114 &5129985532981561298
@@ -453,12 +449,42 @@ MonoBehaviour:
   rateOfStaminaLoseOnRun: 20
   rateOfStaminaLoseOnWalk: 2
   rateOfStaminaGain: 40
+  amountOfReductionOnJump: 6
   staminaColor: {r: 0, g: 0.5345166, b: 1, a: 1}
   staminaBar: {fileID: 314366654580750407}
   healthColor: {r: 1, g: 0, b: 0, a: 1}
   healthBar: {fileID: 914713836}
   radiationColor: {r: 1, g: 0.9530152, b: 0, a: 1}
   radiationBar: {fileID: 1037950918035410527}
+--- !u!114 &4833147580893760139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099198724796128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6fb951ed1d540478d25bb0a8e88427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHolding: {fileID: 11400000, guid: 7fcf0ff957d46e142966a12274f359b2, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &9091808553146265752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099198724796128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8cf13470e280442883ce394667aad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySpace: 2
 --- !u!1 &1664065944631190
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpSpeed: 10
+  jumpSpeed: 2
   gravity: 10
   Cam: {fileID: 1878856435725208}
   camHeight: 1
@@ -1017,7 +1043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.87447566}
   m_AnchorMax: {x: 0, y: 0.87447566}
-  m_AnchoredPosition: {x: 112.099945, y: 1.3999939}
+  m_AnchoredPosition: {x: 112.09985, y: 1.4000244}
   m_SizeDelta: {x: 209.3, y: 26.900024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037950918035410527

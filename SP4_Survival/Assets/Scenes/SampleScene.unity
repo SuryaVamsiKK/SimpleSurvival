@@ -185,6 +185,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2512162561797594107, guid: 665a412153e9df046a71c7b518825b3c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512162561797594107, guid: 665a412153e9df046a71c7b518825b3c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 665a412153e9df046a71c7b518825b3c, type: 3}
 --- !u!1 &170076733
@@ -479,46 +489,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573702103917527266, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3573702103917527266, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3931866735718690998, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1615627359943193152, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662627896867618921, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356228669707663594, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356228669707663594, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 36398012432454023, guid: b06978aac6782df45ae9ad892ed2c22f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06978aac6782df45ae9ad892ed2c22f, type: 3}
