@@ -38,12 +38,12 @@ public class TreeFunctionality : MonoBehaviour
         
     public void GiveWood()
     {
-        Debug.Log("Added 10 Wood");
+        //Debug.Log("Added 10 Wood");
         bool wasPickedup = Inventory.instance.Add(item);
 
         if(!wasPickedup)
         {
-            Debug.Log("Wasted 10 wood");
+            Debug.Log("Dropped 10 wood");
         }
     }
 }

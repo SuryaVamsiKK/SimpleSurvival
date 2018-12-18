@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c12d43a255ca54d866fee71afdacf8, type: 3}
   m_Name: First
   m_EditorClassIdentifier: 
-  weight: 0
-  damage: 0
+  weight: 10
+  damage: 10
+  meleeRange: 1
