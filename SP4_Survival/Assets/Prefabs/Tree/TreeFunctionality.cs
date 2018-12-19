@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TreeFunctionality : MonoBehaviour
 {
-    public Item item;
+    public Resources item;
     public float destoryTime;
     public float health;
     public Vector3 dir;
@@ -39,7 +39,7 @@ public class TreeFunctionality : MonoBehaviour
     public void GiveWood()
     {
         //Debug.Log("Added 10 Wood");
-        bool wasPickedup = Inventory.instance.Add(item);
+        bool wasPickedup = InventoryV2.instance.Add(item);
 
         if(!wasPickedup)
         {

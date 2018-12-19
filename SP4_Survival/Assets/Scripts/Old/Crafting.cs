@@ -22,10 +22,6 @@ public class Crafting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        
-
         if (place == false && crafted != null)
         {
             pos = this.transform.GetChild(0).position + this.transform.GetChild(0).forward * 2;
@@ -52,18 +48,23 @@ public class Crafting : MonoBehaviour
                             Debug.Log("Not Enough resources to craft");
                             break;
                         }
+                    }
+
+                    if (bag.items[i].item.typeOfItem == itemType.WOOD)
+                    {
+                        if (bag.items[i].amount > 3)
+                        {
+                            bag.items[i].amount -= 3;
+                            GameObject g = Instantiate(wall);
+                            crafted = g;
+                            break;
+                        }
                         else
                         {
-                            if (bag.items[i].item.typeOfItem == itemType.WOOD)
-                            {
-                                bag.items[i].amount -= 3;
-                                GameObject g = Instantiate(wall);
-                                crafted = g;
-                                break;
-                            }
+
                         }
                     }
-                    
+
                 }
             }
             else
@@ -76,5 +77,35 @@ public class Crafting : MonoBehaviour
         {
             crafted = null;
         }
+    }
+
+    void Craft()
+    {
+        int requiredResources = 3;
+
+        List<int> woods = new List<int>();
+        for (int i = 0; i < bag.items.Count; i++)
+        {
+            if (bag.items[i].item.typeOfItem == itemType.WOOD)
+            {
+                woods.Add(bag.items[i].amount);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            for (int i = 0; i < woods.Count; i++)
+            {
+                if (woods[i] > requiredResources)
+                {
+
+                }
+                if (woods[i] < 0 && i != woods.Count - 1)
+                {
+
+                }
+            }
+        }
+
     }
 }

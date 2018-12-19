@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 4833147580893760139}
   - component: {fileID: 402642468}
   - component: {fileID: 402642464}
+  - component: {fileID: 8430413737334023057}
   m_Layer: 0
   m_Name: FPS
   m_TagString: Player
@@ -548,7 +549,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099198724796128}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5597b56a75cbf2540a11c3c2e1cf0110, type: 3}
   m_Name: 
@@ -563,7 +564,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099198724796128}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaf4f963f2acc2a4887d114c5319585a, type: 3}
   m_Name: 
@@ -572,6 +573,20 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   WOODUI: {fileID: 3457754386564138442, guid: f0990bc90c65b924e8f13db40ddae7a9, type: 3}
   STONEUI: {fileID: 1573172684439136644, guid: 8e6c8a465760d7241a259e048f8ea2da, type: 3}
+--- !u!114 &8430413737334023057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099198724796128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea476636ad9f204d809fd50fcc4e874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryObject: {fileID: 0}
+  Bag: []
 --- !u!1 &1664065944631190
 GameObject:
   m_ObjectHideFlags: 0

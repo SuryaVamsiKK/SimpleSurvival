@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1dfebb7e9df4b4685f3175122e19f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 174136e573010b24abf32f827c51359c, type: 2}
+  item: {fileID: 11400000, guid: dd0b35c5e264b564283d62153db80fb4, type: 2}
   destoryTime: 2
   health: 100
   dir: {x: 0, y: 0, z: 0}
