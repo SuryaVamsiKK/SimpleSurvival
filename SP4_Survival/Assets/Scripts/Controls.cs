@@ -30,6 +30,8 @@ public class Controls : MonoBehaviour
     public KeyCode meleeAttack;
     public KeyCode Jump;
     public KeyCode Inventory;
+    public KeyCode PlaceObject;
+    public KeyCode PickUP;
     public float mouseSensitivityX;
     public float mouseSensitivityY;
 

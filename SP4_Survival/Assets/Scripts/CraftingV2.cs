@@ -6,7 +6,7 @@ public class CraftingV2 : MonoBehaviour
 {
     public List<inventoryItems> Bag = new List<inventoryItems>();
     public KeyCode placeCraftable;
-    public Recipies obj;
+
     GameObject craftedObj;
     GameObject player;
     public float craftDistance;
@@ -20,84 +20,82 @@ public class CraftingV2 : MonoBehaviour
     void Update()
     {
         Bag = InventoryV2.instance.Bag;
-
-        if(Input.GetKeyDown(obj.access))
+        
+        if (craftedObj != null)
         {
-            bool[] collectedReources;
-            collectedReources = new bool[obj.requiredResources.Length];
+            positionCraftable();
+            PlaceCraftable();
+        }
+    }
 
-            if (Bag.Count == 0)
-            {
-                Debug.Log("Your Inventory is empty");
-            }
+    public void Craft(Recipies obj)
+    {
+        bool[] collectedReources;
+        collectedReources = new bool[obj.requiredResources.Length];
 
-            else
+        if (Bag.Count == 0)
+        {
+            Debug.Log("Your Inventory is empty");
+        }
+
+        else
+        {
+            for (int i = 0; i < Bag.Count; i++)
             {
-                for (int i = 0; i < Bag.Count; i++)
+                for (int j = 0; j < obj.requiredResources.Length; j++)
                 {
-                    for (int j = 0; j < obj.requiredResources.Length; j++)
+                    if (Bag[i].item.typeOfResource == obj.requiredResources[j].requiredResource)
                     {
-                        if (Bag[i].item.typeOfResource == obj.requiredResources[j].requiredResource)
+                        if (Bag[i].amount >= obj.requiredResources[j].requiredAmount)
                         {
-                            if (Bag[i].amount >= obj.requiredResources[j].requiredAmount)
-                            {
-                                collectedReources[j] = true;
-                            }
-                            else
-                            {
-                                collectedReources[j] = false;
-                            }
+                            collectedReources[j] = true;
+                        }
+                        else
+                        {
+                            collectedReources[j] = false;
                         }
                     }
                 }
+            }
 
 
-                for (int i = 0; i < Bag.Count; i++)
+            for (int i = 0; i < Bag.Count; i++)
+            {
+                for (int j = 0; j < obj.requiredResources.Length; j++)
                 {
-                    for (int j = 0; j < obj.requiredResources.Length; j++)
+                    if (Bag[i].item.typeOfResource == obj.requiredResources[j].requiredResource)
                     {
-                        if (Bag[i].item.typeOfResource == obj.requiredResources[j].requiredResource)
+                        if (Bag[i].amount >= obj.requiredResources[j].requiredAmount)
                         {
-                            if (Bag[i].amount >= obj.requiredResources[j].requiredAmount)
+                            for (int k = 0; k < collectedReources.Length; k++)
                             {
-                                for (int k = 0; k < collectedReources.Length; k++)
+                                if (k == collectedReources.Length - 1 && collectedReources[k] == true)
                                 {
-                                    if (k == collectedReources.Length - 1 && collectedReources[k] == true)
-                                    {
-                                        Bag[i].amount -= obj.requiredResources[j].requiredAmount;
-                                    }
+                                    Bag[i].amount -= obj.requiredResources[j].requiredAmount;
                                 }
                             }
                         }
                     }
                 }
+            }
 
-                for (int i = 0; i < collectedReources.Length; i++)
+            for (int i = 0; i < collectedReources.Length; i++)
+            {
+                if (collectedReources[i] == false)
                 {
-                    if (collectedReources[i] == false)
-                    {
-                        break;
-                    }
-                    if (i == collectedReources.Length - 1 && collectedReources[i] == true)
-                    {
-                        Craft(obj.craftable);
-                    }
+                    break;
                 }
-
-                if (craftedObj == null)
+                if (i == collectedReources.Length - 1 && collectedReources[i] == true)
                 {
-                    Debug.Log("Crafting : " + obj.craftable.name + " : failed.");
+                    craftedObj = Instantiate(obj.craftable);
                 }
             }
+
+            if (craftedObj == null)
+            {
+                Debug.Log("Crafting : " + obj.craftable.name + " : failed.");
+            }
         }
-
-        positionCraftable();
-        PlaceCraftable();
-    }
-
-    void Craft(GameObject craftable)
-    {
-        craftedObj = Instantiate(craftable);
     }
 
     void positionCraftable()
@@ -114,9 +112,9 @@ public class CraftingV2 : MonoBehaviour
 
     void PlaceCraftable()
     {
-        if(Input.GetKeyDown(placeCraftable))
+        if(Input.GetKeyDown(GameObject.FindGameObjectWithTag("Player").GetComponent<Controls>().PlaceObject))
         {
-            placed = !placed;
+            placed = false;
             craftedObj = null;
         }
     }

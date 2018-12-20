@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f6ef9a42c904f2419cbcffa126be312, type: 3}
-  m_Name: Bench
+  m_Name: CampFire
   m_EditorClassIdentifier: 
-  craftable: {fileID: 5959273474935480893, guid: 6bdb347f98ef3f641addaf02916a502c,
+  craftable: {fileID: 4461706351727152256, guid: f2e7a725718a05245ac7103e71cfecd2,
     type: 3}
   access: 101
   requiredResources:
   - requiredResource: 0
-    requiredAmount: 6
-  - requiredResource: 1
     requiredAmount: 5
+  - requiredResource: 1
+    requiredAmount: 11

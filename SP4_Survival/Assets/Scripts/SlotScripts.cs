@@ -18,6 +18,15 @@ public class SlotScripts : MonoBehaviour
         resource.amt = 0;
        
         resource.itself.SetActive(false);
+    }
 
+    public void ShowRecpie(GameObject g)
+    {
+        g.SetActive(true);
+    }
+
+    public void CraftCall(Recipies recpie)
+    {
+        GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().Craft(recpie);
     }
 }

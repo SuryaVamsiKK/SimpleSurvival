@@ -7,6 +7,7 @@ TagManager:
   - Tree
   - Stone
   - Inventory
+  - PickUp
   layers:
   - Default
   - TransparentFX
