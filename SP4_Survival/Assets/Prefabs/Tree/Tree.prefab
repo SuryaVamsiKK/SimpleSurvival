@@ -97,6 +97,7 @@ MonoBehaviour:
   destoryTime: 2
   health: 100
   dir: {x: 0, y: 0, z: 0}
+  amountTobeGiven: 2
 --- !u!54 &7356228669707663594
 Rigidbody:
   m_ObjectHideFlags: 0

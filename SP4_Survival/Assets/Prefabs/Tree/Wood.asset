@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeOfResource: 0
   weight: 10
-  perStack: 20
+  perStack: 5
+  icon: {fileID: 21300000, guid: 02900753d3d763c43a9ee497650a2024, type: 3}

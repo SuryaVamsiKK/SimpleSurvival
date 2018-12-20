@@ -23,9 +23,8 @@ public class Melee : MonoBehaviour {
         {
             if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
                 
-                hit.transform.GetComponent<TreeFunctionality>().health -= weaponHolding.damage;
-                hit.transform.GetComponent<TreeFunctionality>().GiveWood();
-                //Debug.Log ("Did Hit");
+                hit.transform.GetComponent<ResourceFunctionality>().health -= weaponHolding.damage;
+                hit.transform.GetComponent<ResourceFunctionality>().GiveResources();
             }
         }
     }
@@ -36,7 +35,6 @@ public class Melee : MonoBehaviour {
 
         if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
             Debug.DrawRay (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward) * hit.distance, Color.black);
-            //Debug.Log ("Did Hit");
         }
         if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
             Debug.DrawRay (hit.point, transform.GetChild (1).TransformDirection (Vector3.forward) * weaponHolding.meleeRange, Color.green);

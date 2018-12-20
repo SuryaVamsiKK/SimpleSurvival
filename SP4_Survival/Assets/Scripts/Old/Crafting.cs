@@ -8,7 +8,7 @@ public class Crafting : MonoBehaviour
     public GameObject wall;
     public Vector3 pos;
     GameObject crafted;
-    public Inventory bag;
+    public InventoryV2 bag;
 
 
     bool place = false;
@@ -37,24 +37,24 @@ public class Crafting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (bag.items.Count > 0)
+            if (bag.Bag.Count > 0)
             {
-                for (int i = 0; i < bag.items.Count; i++)
+                for (int i = 0; i < bag.Bag.Count; i++)
                 {
-                    if (i == bag.items.Count - 1)
+                    if (i == bag.Bag.Count - 1)
                     {
-                        if (bag.items[i].amount < 3)
+                        if (bag.Bag[i].amount < 3)
                         {
                             Debug.Log("Not Enough resources to craft");
                             break;
                         }
                     }
 
-                    if (bag.items[i].item.typeOfItem == itemType.WOOD)
+                    if (bag.Bag[i].item.typeOfResource == Resource.Wood)
                     {
-                        if (bag.items[i].amount > 3)
+                        if (bag.Bag[i].amount > 3)
                         {
-                            bag.items[i].amount -= 3;
+                            bag.Bag[i].amount -= 3;
                             GameObject g = Instantiate(wall);
                             crafted = g;
                             break;
@@ -82,29 +82,22 @@ public class Crafting : MonoBehaviour
     void Craft()
     {
         int requiredResources = 3;
-
-        List<int> woods = new List<int>();
-        for (int i = 0; i < bag.items.Count; i++)
-        {
-            if (bag.items[i].item.typeOfItem == itemType.WOOD)
-            {
-                woods.Add(bag.items[i].amount);
-            }
-        }
+        
+        
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            for (int i = 0; i < woods.Count; i++)
-            {
-                if (woods[i] > requiredResources)
-                {
+            //for (int i = 0; i < woods.Count; i++)
+            //{
+            //    if (woods[i] > requiredResources)
+            //    {
 
-                }
-                if (woods[i] < 0 && i != woods.Count - 1)
-                {
+            //    }
+            //    if (woods[i] < 0 && i != woods.Count - 1)
+            //    {
 
-                }
-            }
+            //    }
+            //}+
         }
 
     }

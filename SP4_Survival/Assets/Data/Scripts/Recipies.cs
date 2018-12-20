@@ -1,0 +1,18 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "new Recpie", menuName = "Recpie")]
+public class Recipies : ScriptableObject
+{
+    public GameObject craftable;
+    public KeyCode access;
+    public sRrecpie[] requiredResources;
+}
+
+[System.Serializable]
+public class sRrecpie
+{
+    public Resource requiredResource;
+    public int requiredAmount;
+}

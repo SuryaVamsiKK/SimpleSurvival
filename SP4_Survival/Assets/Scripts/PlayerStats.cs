@@ -36,6 +36,9 @@ public class PlayerStats : MonoBehaviour
     public Color radiationColor = Color.white;
     public Slider radiationBar;
 
+    [Header("Inventory")]
+    public GameObject Inventory;
+    public bool InventoryStatus = false;
 
     bool isSprinting, isIdel;
     // Start is called before the first frame update
@@ -53,6 +56,21 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown(GetComponent<Controls>().Inventory))
+        {
+            InventoryStatus = !InventoryStatus;
+        }
+        if(InventoryStatus == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Inventory.SetActive(true);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Inventory.SetActive(false);
+        }
         StaminaCalculation();
         HealthCalculation();
     }

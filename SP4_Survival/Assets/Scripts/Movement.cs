@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         this.transform.rotation = Quaternion.Euler(0, Cam.transform.eulerAngles.y, 0);
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6ef9a42c904f2419cbcffa126be312, type: 3}
+  m_Name: Bench
+  m_EditorClassIdentifier: 
+  craftable: {fileID: 6376629107522067141, guid: 0a04bf8042c195342a30151cf2ac548b,
+    type: 3}
+  access: 101
+  requiredResources:
+  - requiredResource: 0
+    requiredAmount: 6
+  - requiredResource: 1
+    requiredAmount: 5
