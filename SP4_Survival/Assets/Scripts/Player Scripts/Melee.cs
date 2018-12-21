@@ -25,8 +25,8 @@ public class Melee : MonoBehaviour {
             {
                 if (hit.transform.gameObject.tag == "Resource")
                 {
-                    hit.transform.GetComponent<ResourceFunctionality>().health -= weaponHolding.damage;
-                    hit.transform.GetComponent<ResourceFunctionality>().GiveResources();
+                    hit.transform.GetComponent<HarvestableFunctionality>().health -= weaponHolding.damage;
+                    hit.transform.GetComponent<HarvestableFunctionality>().GiveResources();
                 }
                 if (hit.transform.gameObject.tag == "Interactable")
                 {

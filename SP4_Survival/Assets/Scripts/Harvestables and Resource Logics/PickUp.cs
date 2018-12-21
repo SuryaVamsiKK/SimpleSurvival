@@ -16,14 +16,4 @@ public class PickUp : MonoBehaviour
             GetComponent<ScriptActiivation>().interacted = false;
         }
     }
-    //void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        if (Input.GetKeyDown(other.transform.parent.GetComponent<Controls>().PickUP))
-    //        {
-
-    //        }
-    //    }
-    //}
 }

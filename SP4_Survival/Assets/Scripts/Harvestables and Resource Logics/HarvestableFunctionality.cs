@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceFunctionality : MonoBehaviour
+public class HarvestableFunctionality : MonoBehaviour
 {
     public Resources item;
     public float destoryTime;
