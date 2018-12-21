@@ -12,6 +12,12 @@ public class SlotScripts : MonoBehaviour
             if(InventoryV2.instance.Bag[i].item.typeOfResource == resource.typeOf)
             {
                 InventoryV2.instance.Bag[i].amount -= resource.amt;
+                GameObject g = Instantiate(resource.PickUp);
+                g.transform.forward = this.transform.root.GetChild(1).forward;
+                g.transform.position = this.transform.root.GetChild(1).position + this.transform.root.GetChild(1).forward * GameObject.FindGameObjectWithTag("Player").GetComponent<Controls>().SpwanDistance;
+                g.transform.forward = this.transform.root.GetChild(1).forward;
+                g.GetComponent<PickUp>().typeOf = resource.resource;
+                g.GetComponent<PickUp>().amount = resource.amt;
                 break;
             }
         }

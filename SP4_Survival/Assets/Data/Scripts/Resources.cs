@@ -15,5 +15,5 @@ public class Resources : ScriptableObject
 
 public enum Resource
 {
-    Wood, Stone
+    Wood, Stone, Charcole, Cotton, Plastic, Metal, Rubber
 }

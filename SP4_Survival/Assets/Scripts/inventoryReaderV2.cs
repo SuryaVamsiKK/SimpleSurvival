@@ -40,6 +40,7 @@ public class inventoryReaderV2 : MonoBehaviour
             BackPack[i] = new InventoryTypes();
             BackPack[i].name = obj[i].item.typeOfResource;
             BackPack[i].icon = obj[i].item.icon;
+            BackPack[i].resource = obj[i].item;
         }
 
         for (int i = 0; i < obj.Count; i++)
@@ -126,6 +127,7 @@ public class InventoryTypes
 {
     public int[] pack;
     public Resource name;
+    public Resources resource;
     public Sprite icon;
     public Button[] UI;
 }

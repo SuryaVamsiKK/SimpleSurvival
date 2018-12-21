@@ -183,6 +183,8 @@ MonoBehaviour:
   typeOf: 0
   amt: 0
   itself: {fileID: 1505621383119570059}
+  PickUp: {fileID: 3993298559510866602, guid: f8e0dd2df247fc94cad092261d64c783, type: 3}
+  resource: {fileID: 0}
 --- !u!1 &3363526060540957172
 GameObject:
   m_ObjectHideFlags: 0

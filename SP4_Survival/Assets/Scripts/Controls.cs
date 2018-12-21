@@ -32,6 +32,7 @@ public class Controls : MonoBehaviour
     public KeyCode Inventory;
     public KeyCode PlaceObject;
     public KeyCode PickUP;
+    public float SpwanDistance;
     public float mouseSensitivityX;
     public float mouseSensitivityY;
 

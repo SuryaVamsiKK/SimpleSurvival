@@ -7,4 +7,6 @@ public class ReourceHolder : MonoBehaviour
     public Resource typeOf;
     public int amt;
     public GameObject itself;
+    public GameObject PickUp;
+    public Resources resource;
 }

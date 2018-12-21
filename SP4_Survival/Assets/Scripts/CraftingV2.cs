@@ -104,7 +104,7 @@ public class CraftingV2 : MonoBehaviour
         {
             if (!placed)
             {
-                craftedObj.transform.position = player.transform.GetChild(0).position + player.transform.GetChild(0).forward * 2;
+                craftedObj.transform.position = player.transform.GetChild(0).position + player.transform.GetChild(0).forward * GameObject.FindGameObjectWithTag("Player").GetComponent<Controls>().SpwanDistance;
                 craftedObj.transform.forward = player.transform.GetChild(0).transform.forward * craftDistance;
             }
         }
@@ -115,6 +115,7 @@ public class CraftingV2 : MonoBehaviour
         if(Input.GetKeyDown(GameObject.FindGameObjectWithTag("Player").GetComponent<Controls>().PlaceObject))
         {
             placed = false;
+            craftedObj.GetComponent<ScriptActiivation>().enabled = true;
             craftedObj = null;
         }
     }

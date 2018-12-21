@@ -19,6 +19,7 @@ public class PickUp : MonoBehaviour
             if (Input.GetKeyDown(other.transform.parent.GetComponent<Controls>().PickUP))
             {
                 InventoryV2.instance.Add(typeOf, amount);
+                Destroy(this.gameObject);
             }
         }
     }

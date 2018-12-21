@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   typeOfResource: 0
-  weight: 10
-  perStack: 5
+  weight: 5
+  perStack: 10
   icon: {fileID: 21300000, guid: 02900753d3d763c43a9ee497650a2024, type: 3}

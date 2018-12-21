@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpPlayer : MonoBehaviour
+public class ScriptActiivation : MonoBehaviour
 {
-   
+    public bool enabled = false;
 }
