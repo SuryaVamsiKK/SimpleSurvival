@@ -8,6 +8,8 @@ TagManager:
   - Stone
   - Inventory
   - PickUp
+  - Interactable
+  - Resource
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - PostProcessing
   - Resources
-  - 
+  - Interactable
   - 
   - 
   - 

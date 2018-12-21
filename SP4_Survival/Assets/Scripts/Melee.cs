@@ -21,10 +21,17 @@ public class Melee : MonoBehaviour {
 
         if (Input.GetKeyDown (GetComponent<Controls>().meleeAttack)) 
         {
-            if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
-                
-                hit.transform.GetComponent<ResourceFunctionality>().health -= weaponHolding.damage;
-                hit.transform.GetComponent<ResourceFunctionality>().GiveResources();
+            if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
+            {
+                if (hit.transform.gameObject.tag == "Resource")
+                {
+                    hit.transform.GetComponent<ResourceFunctionality>().health -= weaponHolding.damage;
+                    hit.transform.GetComponent<ResourceFunctionality>().GiveResources();
+                }
+                if (hit.transform.gameObject.tag == "Interactable")
+                {
+                    hit.transform.GetComponent<ScriptActiivation>().interacted = true;
+                }
             }
         }
     }
@@ -33,9 +40,10 @@ public class Melee : MonoBehaviour {
     {
         RaycastHit hit;
 
-        if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
-            Debug.DrawRay (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward) * hit.distance, Color.black);
-        }
+        Debug.DrawRay(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward) * weaponHolding.meleeRange, Color.black);
+        //if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
+        //    Debug.DrawRay (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward) * hit.distance, Color.black);
+        //}
         if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
             Debug.DrawRay (hit.point, transform.GetChild (1).TransformDirection (Vector3.forward) * weaponHolding.meleeRange, Color.green);
         }

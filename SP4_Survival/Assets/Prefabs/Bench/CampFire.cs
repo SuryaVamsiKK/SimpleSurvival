@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class CampFire : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class CampFire : MonoBehaviour
     public GameObject Output;
     public int resourceAmount;
     public GameObject Produced;
-    
+    public float minFire = 0, MaxFire = 50000f;
+    public GameObject Campfire;
+
+    bool started = false;
     void Start()
     {
         Produced = null;
@@ -20,40 +24,57 @@ public class CampFire : MonoBehaviour
     
     void Update()
     {
-        
-    }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (this.GetComponent<ScriptActiivation>().enabled)
+        if (resourceAmount >= needForOne && started == false)
         {
-            if (other.gameObject.tag == "Player")
+            StartCoroutine(Spwan());
+            started = true;
+        }
+
+        if (resourceAmount < needForOne)
+        {
+            started = false;
+            Campfire.SetActive(false);
+        }
+
+        if(GetComponent<ScriptActiivation>().interacted)
+        {
+            for (int i = 0; i < InventoryV2.instance.Bag.Count; i++)
             {
-                if (Input.GetKeyDown(other.transform.parent.GetComponent<Controls>().PickUP))
+                if (InventoryV2.instance.Bag[i].item.typeOfResource == need)
                 {
-                    for (int i = 0; i < InventoryV2.instance.Bag.Count; i++)
+                    if (InventoryV2.instance.Bag[i].amount >= needForOne)
                     {
-                        if (InventoryV2.instance.Bag[i].item.typeOfResource == need)
-                        {
-                            if (InventoryV2.instance.Bag[i].amount >= needForOne)
-                            {
-                                InventoryV2.instance.Bag[i].amount -= needForOne;
-                                resourceAmount += needForOne;
-                                if (resourceAmount >= needForOne)
-                                {
-                                    StartCoroutine(Spwan());
-                                }
-                            }
-                        }
+                        InventoryV2.instance.Bag[i].amount -= needForOne;
+                        resourceAmount += needForOne;
                     }
                 }
             }
+            GetComponent<ScriptActiivation>().interacted = false;
         }
     }
 
+    //void OnTriggerStay(Collider other)
+    //{
+    //    if (this.GetComponent<ScriptActiivation>().enabled)
+    //    {
+    //        if (other.gameObject.tag == "Player")
+    //        {
+    //            if (Input.GetKeyDown(other.transform.parent.GetComponent<Controls>().PickUP))
+    //            {
+    //            }
+    //        }
+    //    }
+    //}
+
     IEnumerator Spwan()
     {
+        Campfire.SetActive(true);
         yield return new WaitForSeconds(productionTime);
+        if (resourceAmount >= needForOne)
+        {
+            StartCoroutine(Spwan());
+        }
         resourceAmount -= needForOne;
         if (Produced == null)
         {
