@@ -671,7 +671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19acbf3c172046f4c8a2dc210fe788c5, type: 2}
+  - {fileID: 2100000, guid: 5abd1ebbdbad72a4a8230574fefbf97b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -748,7 +748,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19acbf3c172046f4c8a2dc210fe788c5, type: 2}
+  - {fileID: 2100000, guid: 5abd1ebbdbad72a4a8230574fefbf97b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -825,7 +825,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32631319db28ea04dabd9f6d22d9411f, type: 2}
+  - {fileID: 2100000, guid: 8c77ec3115c808d40b018aa939af846b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -902,7 +902,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32631319db28ea04dabd9f6d22d9411f, type: 2}
+  - {fileID: 2100000, guid: ff70324aa5b4b32468b3e0fc0ce06567, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1089,7 +1089,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32631319db28ea04dabd9f6d22d9411f, type: 2}
+  - {fileID: 2100000, guid: ff70324aa5b4b32468b3e0fc0ce06567, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1166,7 +1166,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32631319db28ea04dabd9f6d22d9411f, type: 2}
+  - {fileID: 2100000, guid: ff70324aa5b4b32468b3e0fc0ce06567, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1244,4 +1244,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25af7ddb385ad24e83e8ba74602316b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 0
+  enabled: 1
+  interacted: 0
