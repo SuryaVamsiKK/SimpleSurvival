@@ -6,7 +6,6 @@ using UnityEngine;
 public class Recipies : ScriptableObject
 {
     public GameObject craftable;
-    public KeyCode access;
     public sRrecpie[] requiredResources;
 }
 

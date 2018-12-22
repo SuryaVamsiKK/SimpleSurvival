@@ -15,5 +15,4 @@ MonoBehaviour:
   weight: 10
   damage: 10
   meleeRange: 3
-  Wepon: {fileID: 3205183370215858769, guid: dd02b1b74571ada4d924b4ac7253a201, type: 3}
-  Level: 0
+  Wepon: {fileID: 7076370143634927627, guid: 29ae207d1c414514aab71dbfec89fe2f, type: 3}

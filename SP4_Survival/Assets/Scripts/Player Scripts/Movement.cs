@@ -23,30 +23,31 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //Cursor.lockState = CursorLockMode.Locked;
-
-        this.transform.rotation = Quaternion.Euler(0, Cam.transform.eulerAngles.y, 0);
-
-        CharacterController controller = GetComponent<CharacterController>();
-        if (controller.isGrounded)
+        if (!mainStats.InventoryStatus)
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
+            this.transform.rotation = Quaternion.Euler(0, Cam.transform.eulerAngles.y, 0);
 
-            if (Input.GetKeyDown(Controls.instance.Jump) && mainStats.stamina > mainStats.amountOfReductionOnJump)
+            CharacterController controller = GetComponent<CharacterController>();
+            if (controller.isGrounded)
             {
-                moveDirection.y = jumpSpeed;
-            }
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection *= speed;
 
-            if (Input.GetKey(Controls.instance.Run) && mainStats.stamina > 0)
-            {
-                moveDirection *= speed * 0.5f;
-            }
+                if (Input.GetKeyDown(Controls.instance.Jump) && mainStats.stamina > mainStats.amountOfReductionOnJump)
+                {
+                    moveDirection.y = jumpSpeed;
+                }
 
+                if (Input.GetKey(Controls.instance.Run) && mainStats.stamina > 0)
+                {
+                    moveDirection *= speed * 0.5f;
+                }
+
+            }
+            moveDirection.y -= gravity * Time.deltaTime;
+            controller.Move(moveDirection * Time.deltaTime);
+            Cam.transform.position = this.transform.position + new Vector3(0, camHeight, 0);
         }
-        moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
-        Cam.transform.position = this.transform.position + new Vector3(0, camHeight, 0);
-
     }
 }

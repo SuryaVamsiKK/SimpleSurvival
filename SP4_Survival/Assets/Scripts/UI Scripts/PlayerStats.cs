@@ -41,7 +41,7 @@ public class PlayerStats : MonoBehaviour
     public bool InventoryStatus = false;
 
     bool isSprinting, isIdel;
-    // Start is called before the first frame update
+
     void Start()
     {
         staminaBar.fillRect.GetComponent<Image>().color = staminaColor;
@@ -52,25 +52,10 @@ public class PlayerStats : MonoBehaviour
         healthBar.maxValue = maxHealth;
         radiationBar.maxValue = maxRadiation;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
-        if(Input.GetKeyDown(GetComponent<Controls>().Inventory))
-        {
-            InventoryStatus = !InventoryStatus;
-        }
-        if(InventoryStatus == true)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Inventory.SetActive(true);
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Inventory.SetActive(false);
-        }
+        inventory();
         StaminaCalculation();
         HealthCalculation();
     }
@@ -149,5 +134,22 @@ public class PlayerStats : MonoBehaviour
 
         healthBar.value = health;
         radiationBar.value = radiation;
+    }
+    void inventory()
+    {
+        if (Input.GetKeyDown(GetComponent<Controls>().Inventory))
+        {
+            InventoryStatus = !InventoryStatus;
+        }
+        if (InventoryStatus == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Inventory.SetActive(true);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Inventory.SetActive(false);
+        }
     }
 }

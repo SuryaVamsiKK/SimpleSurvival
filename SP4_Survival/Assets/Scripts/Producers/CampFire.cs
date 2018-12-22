@@ -80,7 +80,6 @@ public class CampFire : MonoBehaviour
         {
             Produced = Instantiate(Output);
             Produced.GetComponent<PickUp>().amount = 1;
-            Produced.transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             Produced.transform.position = this.transform.GetChild(1).transform.position;
             yield break;
         }

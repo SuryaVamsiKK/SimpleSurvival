@@ -21,35 +21,36 @@ public class Melee : MonoBehaviour {
     {
         debugMelee ();
 
-        RaycastHit hit;
-
-        if (Input.GetKeyDown(GetComponent<Controls>().meleeAttack))
+        if (!GetComponent<PlayerStats>().InventoryStatus && !GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().placed)
         {
-            if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
+            RaycastHit hit;
+            if (Input.GetKeyDown(GetComponent<Controls>().meleeAttack))
             {
-                if (hit.transform.gameObject.tag == "Resource")
+                if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
                 {
-                    hit.transform.GetComponent<HarvestableFunctionality>().health -= weaponHolding.damage;
-                    hit.transform.GetComponent<HarvestableFunctionality>().GiveResources();
+                    if (hit.transform.gameObject.tag == "Resource")
+                    {
+                        hit.transform.GetComponent<HarvestableFunctionality>().health -= weaponHolding.damage;
+                        hit.transform.GetComponent<HarvestableFunctionality>().GiveResources();
+                    }
+                }
+                weoponHoldingOBJ.GetComponent<Animator>().SetBool("Attacked", true);
+
+            }
+            if (Input.GetKeyDown(GetComponent<Controls>().PickUP))
+            {
+                if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
+                {
+                    if (hit.transform.gameObject.tag == "Interactable")
+                    {
+                        hit.transform.GetComponent<ScriptActiivation>().interacted = true;
+                    }
                 }
             }
-            weoponHoldingOBJ.GetComponent<Animator>().SetBool("Attacked", true);
-
-        }
-        if (Input.GetKeyDown(GetComponent<Controls>().PickUP))
-        {
-            if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
+            if (weoponHoldingOBJ.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Melee"))
             {
-                if (hit.transform.gameObject.tag == "Interactable")
-                {
-                    hit.transform.GetComponent<ScriptActiivation>().interacted = true;
-                }
+                weoponHoldingOBJ.GetComponent<Animator>().SetBool("Attacked", false);
             }
-        }
-
-        if (weoponHoldingOBJ.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Melee"))
-        {
-            weoponHoldingOBJ.GetComponent<Animator>().SetBool("Attacked", false);
         }
     }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class CraftingV2 : MonoBehaviour
     GameObject craftedObj;
     GameObject player;
     public float craftDistance;
-    bool placed = false;
+    public bool placed = false;
 
     void Start()
     {
@@ -96,6 +96,8 @@ public class CraftingV2 : MonoBehaviour
                 Debug.Log("Crafting : " + obj.craftable.name + " : failed.");
             }
         }
+
+        player.transform.GetComponent<PlayerStats>().InventoryStatus = false;
     }
 
     void positionCraftable()

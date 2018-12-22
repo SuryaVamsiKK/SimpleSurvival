@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0c12d43a255ca54d866fee71afdacf8, type: 3}
-  m_Name: WoodHatchet 1
+  m_Name: MetalHatchet
   m_EditorClassIdentifier: 
   weight: 10
   damage: 10
   meleeRange: 3
   Wepon: {fileID: 3205183370215858769, guid: dd02b1b74571ada4d924b4ac7253a201, type: 3}
-  Level: 0

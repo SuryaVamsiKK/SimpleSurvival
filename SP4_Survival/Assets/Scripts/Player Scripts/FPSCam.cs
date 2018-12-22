@@ -25,38 +25,39 @@ public class FPSCam : MonoBehaviour
 
     void Update()
     {
-
-        X += Input.GetAxis("Mouse X") * GameObject.FindObjectOfType<Controls>().mouseSensitivityX;
-        Y += Input.GetAxis("Mouse Y") * GameObject.FindObjectOfType<Controls>().mouseSensitivityY;
-
-        //Recoil and peek.
+        if (!this.transform.root.GetComponent<PlayerStats>().InventoryStatus)
         {
-            /*  
-            if (Input.GetKeyDown(GameObject.FindObjectOfType<Controls>().Fire))
-             {
-                 Y += recoil;
-             }
+            X += Input.GetAxis("Mouse X") * GameObject.FindObjectOfType<Controls>().mouseSensitivityX;
+            Y += Input.GetAxis("Mouse Y") * GameObject.FindObjectOfType<Controls>().mouseSensitivityY;
 
-             if (Input.GetKey(GameObject.FindObjectOfType<Controls>().PeekRight))
-             {
-                 peek = -10f;
-             }
-             else if (Input.GetKey(GameObject.FindObjectOfType<Controls>().PeekLeft))
-             {
-                 peek = 10f;
-             }
-             else
-             {
-                 peek = 0;
-             } 
-             */
+            //Recoil and peek.
+            {
+                /*  
+                if (Input.GetKeyDown(GameObject.FindObjectOfType<Controls>().Fire))
+                 {
+                     Y += recoil;
+                 }
+
+                 if (Input.GetKey(GameObject.FindObjectOfType<Controls>().PeekRight))
+                 {
+                     peek = -10f;
+                 }
+                 else if (Input.GetKey(GameObject.FindObjectOfType<Controls>().PeekLeft))
+                 {
+                     peek = 10f;
+                 }
+                 else
+                 {
+                     peek = 0;
+                 } 
+                 */
+            }
+
+            rotX = ClampAngle(X, minimumX, maximumX);
+            rotY = ClampAngle(Y, minimumY, maximumY);
+
+            this.transform.localEulerAngles = new Vector3(-rotY, rotX, peek);
         }
-
-        rotX = ClampAngle(X, minimumX, maximumX);
-        rotY = ClampAngle(Y, minimumY, maximumY);
-
-        this.transform.localEulerAngles = new Vector3(-rotY, rotX, peek);
-
     }
 
     public static float ClampAngle(float angle, float min, float max)
