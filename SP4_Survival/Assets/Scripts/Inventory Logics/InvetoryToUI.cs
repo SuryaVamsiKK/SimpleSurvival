@@ -15,7 +15,7 @@ public class InvetoryToUI : MonoBehaviour
     }
 
     //was originally as updateUI.
-    public void LateUpdate()
+    public void Update()
     {
         inventoryScript.DisplayUI();
 
@@ -33,22 +33,19 @@ public class InvetoryToUI : MonoBehaviour
 
         if (inventoryScript.BackPack.Length > 0)
         {
+            int counter = 0;
             for (int i = 0; i < inventoryScript.BackPack.Length; i++)
             {
                 for (int j = 0; j < inventoryScript.BackPack[i].pack.Length; j++)
                 {
-                    int sec = 0;
-                    if (i > 0)
-                    {
-                        sec = inventoryScript.BackPack[i - 1].pack.Length * i;
-                    }
-                    InventoryPanel.transform.GetChild(1).GetChild(sec + j).GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = inventoryScript.BackPack[i].pack[j].ToString();
-                    InventoryPanel.transform.GetChild(1).GetChild(sec + j).GetChild(0).GetChild(0).GetComponent<ReourceHolder>().typeOf = inventoryScript.BackPack[i].name;
-                    InventoryPanel.transform.GetChild(1).GetChild(sec + j).GetChild(0).GetChild(0).GetComponent<ReourceHolder>().amt = inventoryScript.BackPack[i].pack[j];
-                    InventoryPanel.transform.GetChild(1).GetChild(sec + j).GetChild(0).GetChild(2).GetComponent<Image>().sprite = inventoryScript.BackPack[i].icon;
-                    InventoryPanel.transform.GetChild(1).GetChild(sec + j).GetChild(0).GetChild(0).GetComponent<ReourceHolder>().resource = inventoryScript.BackPack[i].resource;
+                    InventoryPanel.transform.GetChild(1).GetChild(counter + j).GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = inventoryScript.BackPack[i].pack[j].ToString();
+                    InventoryPanel.transform.GetChild(1).GetChild(counter + j).GetChild(0).GetChild(0).GetComponent<ReourceHolder>().typeOf = inventoryScript.BackPack[i].name;
+                    InventoryPanel.transform.GetChild(1).GetChild(counter + j).GetChild(0).GetChild(0).GetComponent<ReourceHolder>().amt = inventoryScript.BackPack[i].pack[j];
+                    InventoryPanel.transform.GetChild(1).GetChild(counter + j).GetChild(0).GetChild(2).GetComponent<Image>().sprite = inventoryScript.BackPack[i].icon;
+                    InventoryPanel.transform.GetChild(1).GetChild(counter + j).GetChild(0).GetChild(0).GetComponent<ReourceHolder>().resource = inventoryScript.BackPack[i].resource;
                     //Debug.Log(inventoryScript.BackPack[i].pack[j].ToString() + " :: " + inventoryScript.BackPack[i].name + " :: " + (sec + j));
                 }
+                counter += inventoryScript.BackPack[i].pack.Length;
             }
         }
     }

@@ -10,6 +10,10 @@ TagManager:
   - PickUp
   - Interactable
   - Resource
+  - Level 1 Hatchet
+  - Level 2 Hatchet
+  - Level 3 Hatchet
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -22,10 +26,10 @@ TagManager:
   - PostProcessing
   - Resources
   - Interactable
-  - 
-  - 
-  - 
-  - 
+  - Level 1 Resources
+  - Level 2 Resources
+  - Level 3 Resources
+  - Floor
   - 
   - 
   - 

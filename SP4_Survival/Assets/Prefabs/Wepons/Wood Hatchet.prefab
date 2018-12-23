@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3205183370215767665}
   - component: {fileID: 3051799837714664690}
   m_Layer: 0
-  m_Name: Hatchet
-  m_TagString: Untagged
+  m_Name: Wood Hatchet
+  m_TagString: Level 1 Hatchet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

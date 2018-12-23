@@ -25,10 +25,11 @@ public class SlotScripts : MonoBehaviour
        
         resource.itself.SetActive(false);
     }
+    
 
-    public void ShowRecpie(GameObject g)
+    public void WeponCraft(MeleeWeapons Wepon)
     {
-        g.SetActive(true);
+        GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().CraftNonPlaceable(Wepon);
     }
 
     public void CraftCall(Recipies recpie)

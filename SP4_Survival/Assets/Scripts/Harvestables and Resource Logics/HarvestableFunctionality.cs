@@ -37,14 +37,14 @@ public class HarvestableFunctionality : MonoBehaviour
         Destroy(this.gameObject);
     }
         
-    public void GiveResources()
+    public void GiveResources(int HarvestMultiply)
     {
         GameObject g = GameObject.FindGameObjectWithTag("Inventory");
         bool wasPickedup = false;
 
         if (g.GetComponent<inventoryReaderV2>().inventoryOpen)
         {
-            wasPickedup = InventoryV2.instance.Add(item, amountTobeGiven);
+            wasPickedup = InventoryV2.instance.Add(item, amountTobeGiven * HarvestMultiply);
         }   
         if (!wasPickedup)
         {

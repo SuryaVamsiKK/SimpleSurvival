@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 3145576160720475839, guid: a23ec7309bb36c44e952475640589a1c,
         type: 3}
       propertyPath: m_Name
-      value: Hatchet Variant 1
+      value: Metal Hatceht
+      objectReference: {fileID: 0}
+    - target: {fileID: 3145576160720475839, guid: a23ec7309bb36c44e952475640589a1c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Level 3 Hatchet
       objectReference: {fileID: 0}
     - target: {fileID: 3145576160720177823, guid: a23ec7309bb36c44e952475640589a1c,
         type: 3}
@@ -87,15 +92,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0422cc8b122713b4f97e831e13ed2d0a, type: 2}
-    - target: {fileID: 3145576160718276731, guid: a23ec7309bb36c44e952475640589a1c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ef3a8f12720d8c54abeaa71476bc6209, type: 2}
     - target: {fileID: 3145576160718276729, guid: a23ec7309bb36c44e952475640589a1c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7631cf4b094fc034eb7921aafb5fcf56, type: 2}
+    - target: {fileID: 3145576160718276731, guid: a23ec7309bb36c44e952475640589a1c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef3a8f12720d8c54abeaa71476bc6209, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a23ec7309bb36c44e952475640589a1c, type: 3}

@@ -10,12 +10,17 @@ PrefabInstance:
     - target: {fileID: 3205183370215858769, guid: dd02b1b74571ada4d924b4ac7253a201,
         type: 3}
       propertyPath: m_Name
-      value: Hatchet Variant
+      value: Stone Hatchet
       objectReference: {fileID: 0}
     - target: {fileID: 3205183370215858769, guid: dd02b1b74571ada4d924b4ac7253a201,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205183370215858769, guid: dd02b1b74571ada4d924b4ac7253a201,
+        type: 3}
+      propertyPath: m_TagString
+      value: Level 2 Hatchet
       objectReference: {fileID: 0}
     - target: {fileID: 3205183370215767665, guid: dd02b1b74571ada4d924b4ac7253a201,
         type: 3}

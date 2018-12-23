@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d55d73536fbf234b8c907214669c839, type: 3}
-  m_Name: Charcole
+  m_Name: Metal
   m_EditorClassIdentifier: 
-  typeOfResource: 2
-  weight: 4
-  perStack: 10
-  icon: {fileID: 21300000, guid: b5ac8891114174047b637e1e594de1d0, type: 3}
+  typeOfResource: 6
+  weight: 5
+  perStack: 3
+  icon: {fileID: 21300000, guid: d62ddaefba042e449becbcc1431d45c4, type: 3}

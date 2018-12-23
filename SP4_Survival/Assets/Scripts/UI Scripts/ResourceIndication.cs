@@ -16,7 +16,6 @@ public class ResourceIndication : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
         if (Vector3.Distance(player.transform.position, this.transform.position) < detctionrange)
         {
             this.transform.GetChild(1).gameObject.SetActive(true);

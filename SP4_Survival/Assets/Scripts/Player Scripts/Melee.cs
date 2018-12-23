@@ -5,7 +5,6 @@ using UnityEngine;
 public class Melee : MonoBehaviour {
 
     public MeleeWeapons weaponHolding;
-    public LayerMask layerMask = 1 << 8;
     public Transform weponHolder;
     public GameObject weoponHoldingOBJ;
 
@@ -21,17 +20,23 @@ public class Melee : MonoBehaviour {
     {
         debugMelee ();
 
+        if(weoponHoldingOBJ.tag != weaponHolding.Wepon.tag)
+        {
+            Destroy(weoponHoldingOBJ);
+            weoponHoldingOBJ = Instantiate(weaponHolding.Wepon, weponHolder);
+        }
+
         if (!GetComponent<PlayerStats>().InventoryStatus && !GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().placed)
         {
             RaycastHit hit;
             if (Input.GetKeyDown(GetComponent<Controls>().meleeAttack))
             {
-                if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
+                if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, weaponHolding.AccessLevel))
                 {
                     if (hit.transform.gameObject.tag == "Resource")
                     {
                         hit.transform.GetComponent<HarvestableFunctionality>().health -= weaponHolding.damage;
-                        hit.transform.GetComponent<HarvestableFunctionality>().GiveResources();
+                        hit.transform.GetComponent<HarvestableFunctionality>().GiveResources(weaponHolding.harvestMultiplier);
                     }
                 }
                 weoponHoldingOBJ.GetComponent<Animator>().SetBool("Attacked", true);
@@ -39,7 +44,7 @@ public class Melee : MonoBehaviour {
             }
             if (Input.GetKeyDown(GetComponent<Controls>().PickUP))
             {
-                if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, layerMask))
+                if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hit, weaponHolding.meleeRange, weaponHolding.AccessLevel))
                 {
                     if (hit.transform.gameObject.tag == "Interactable")
                     {
@@ -59,7 +64,7 @@ public class Melee : MonoBehaviour {
         RaycastHit hit;
 
         Debug.DrawRay(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward) * weaponHolding.meleeRange, Color.black);
-        if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange, layerMask)) {
+        if (Physics.Raycast (transform.GetChild (1).position, transform.GetChild (1).TransformDirection (Vector3.forward), out hit, weaponHolding.meleeRange)) {
             Debug.DrawRay (hit.point, transform.GetChild (1).TransformDirection (Vector3.forward) * weaponHolding.meleeRange, Color.green);
         }
     }

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6ef9a42c904f2419cbcffa126be312, type: 3}
   m_Name: Forege
   m_EditorClassIdentifier: 
-  craftable: {fileID: 0}
-  access: 0
-  requiredResources: []
+  craftable: {fileID: 8642015149589402457, guid: 6cab3656e35f9e2499e21f5513cc4e00,
+    type: 3}
+  requiredResources:
+  - requiredResource: 0
+    requiredAmount: 5
+  - requiredResource: 1
+    requiredAmount: 20

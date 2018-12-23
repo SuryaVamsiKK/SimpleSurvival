@@ -7,16 +7,19 @@ using UnityEngine.VFX;
 public class CampFire : MonoBehaviour
 {
     public Resource need = Resource.Wood;
+    public Resource woodNeed = Resource.Wood;
 
     public float productionTime;
     public int needForOne;
+    public int WoodForOne;
     public GameObject Output;
     public int resourceAmount;
+    public int WoodAmount;
     public GameObject Produced;
     public float minFire = 0, MaxFire = 50000f;
     public GameObject Campfire;
 
-    bool started = false;
+    public bool started = false;
     void Start()
     {
         Produced = null;
@@ -25,13 +28,13 @@ public class CampFire : MonoBehaviour
     void Update()
     {
 
-        if (resourceAmount >= needForOne && started == false)
+        if (resourceAmount >= needForOne && started == false && WoodAmount >= WoodForOne)
         {
             StartCoroutine(Spwan());
             started = true;
         }
 
-        if (resourceAmount < needForOne)
+        if (resourceAmount < needForOne && WoodAmount < WoodForOne)
         {
             started = false;
             Campfire.SetActive(false);
@@ -47,6 +50,17 @@ public class CampFire : MonoBehaviour
                     {
                         InventoryV2.instance.Bag[i].amount -= needForOne;
                         resourceAmount += needForOne;
+                    }
+                }
+            }
+            for (int i = 0; i < InventoryV2.instance.Bag.Count; i++)
+            {
+                if (InventoryV2.instance.Bag[i].item.typeOfResource == woodNeed)
+                {
+                    if (InventoryV2.instance.Bag[i].amount >= WoodForOne)
+                    {
+                        InventoryV2.instance.Bag[i].amount -= WoodForOne;
+                        WoodAmount += WoodForOne;
                     }
                 }
             }
@@ -71,11 +85,12 @@ public class CampFire : MonoBehaviour
     {
         Campfire.SetActive(true);
         yield return new WaitForSeconds(productionTime);
-        if (resourceAmount >= needForOne)
+        if (resourceAmount >= needForOne && WoodAmount >= WoodForOne)
         {
             StartCoroutine(Spwan());
         }
         resourceAmount -= needForOne;
+        WoodAmount -= WoodForOne;
         if (Produced == null)
         {
             Produced = Instantiate(Output);
