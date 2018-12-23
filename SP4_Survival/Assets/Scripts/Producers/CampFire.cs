@@ -16,7 +16,6 @@ public class CampFire : MonoBehaviour
     public int resourceAmount;
     public int WoodAmount;
     public GameObject Produced;
-    public float minFire = 0, MaxFire = 50000f;
     public GameObject Campfire;
 
     public bool started = false;
