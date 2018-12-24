@@ -149,8 +149,8 @@ public class PlayerStats : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Inventory.transform.GetChild(3).gameObject.SetActive(true);
-            Inventory.transform.GetChild(4).gameObject.SetActive(false);
+            Inventory.transform.GetChild(2).gameObject.SetActive(true);
+            Inventory.transform.GetChild(3).gameObject.SetActive(false);
             Inventory.SetActive(false);
         }
     }

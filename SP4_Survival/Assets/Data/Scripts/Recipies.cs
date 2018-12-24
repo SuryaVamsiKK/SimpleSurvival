@@ -12,6 +12,6 @@ public class Recipies : ScriptableObject
 [System.Serializable]
 public class sRrecpie
 {
-    public Resource requiredResource;
+    public Resources requiredResource;
     public int requiredAmount;
 }

@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftable: {fileID: 4461706351727152256, guid: f2e7a725718a05245ac7103e71cfecd2,
     type: 3}
-  access: 101
   requiredResources:
-  - requiredResource: 0
+  - requiredResource: {fileID: 11400000, guid: dd0b35c5e264b564283d62153db80fb4, type: 2}
     requiredAmount: 5
-  - requiredResource: 1
+  - requiredResource: {fileID: 11400000, guid: 5da4cfdcf785d2f41817ca94c7ffb573, type: 2}
     requiredAmount: 11

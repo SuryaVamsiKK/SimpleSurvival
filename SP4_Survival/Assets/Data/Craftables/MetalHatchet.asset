@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f6ef9a42c904f2419cbcffa126be312, type: 3}
-  m_Name: Bench
+  m_Name: MetalHatchet
   m_EditorClassIdentifier: 
-  craftable: {fileID: 5959273474935480893, guid: 6bdb347f98ef3f641addaf02916a502c,
-    type: 3}
+  craftable: {fileID: 0}
   requiredResources:
   - requiredResource: {fileID: 11400000, guid: dd0b35c5e264b564283d62153db80fb4, type: 2}
-    requiredAmount: 6
-  - requiredResource: {fileID: 11400000, guid: 5da4cfdcf785d2f41817ca94c7ffb573, type: 2}
     requiredAmount: 5
+  - requiredResource: {fileID: 11400000, guid: 31f91e67dbdd5704998f3e5fad0bdc20, type: 2}
+    requiredAmount: 4
