@@ -38,21 +38,8 @@ public class MeshGenerator : MonoBehaviour
     public Vector3 DiseasePos;
     public float DiseaseRadius;
 
-    [Header("Tree")]
     [Header("Prefabs")]
-    public GameObject Tree;
-    public Vector2 TreeNodeHeight;
-    public float TreeProab;
-
-    [Header("Stone")]
-    public GameObject Stone;
-    public Vector2 StoneNodeHeight;
-    public float StoneProab;
-
-    [Header("Ore")]
-    public GameObject Ore;
-    public Vector2 OreNodeHeight;
-    public float OreProab;
+    public Node[] nodes;
 
     void Start()
     {
@@ -175,10 +162,21 @@ public class MeshGenerator : MonoBehaviour
 
     void NodeSpwaner(Vector3 vert)
     {
-        if(vert.y > TreeNodeHeight.x && vert.y < TreeNodeHeight.y && Random.Range(0,TreeProab) < 10)
+        for (int i = 0; i < nodes.Length; i++)
         {
-            GameObject g = Instantiate(Tree, transform);
-            g.transform.position = vert;
-        }
+            if (vert.y > nodes[i].ObjectNodeHeight.x && vert.y < nodes[i].ObjectNodeHeight.y && Random.Range(0, nodes[i].ObjectProbab) < 2)
+            {
+                GameObject g = Instantiate(nodes[i].Object, transform);
+                g.transform.position = vert;
+            }
+        }       
     }
+}
+
+[System.Serializable]
+public class Node
+{
+    public GameObject Object;
+    public Vector2 ObjectNodeHeight;
+    public float ObjectProbab;
 }
