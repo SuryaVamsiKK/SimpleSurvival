@@ -84,12 +84,12 @@ public class CampFire : MonoBehaviour
     {
         Campfire.SetActive(true);
         yield return new WaitForSeconds(productionTime);
+        resourceAmount -= needForOne;
+        WoodAmount -= WoodForOne;
         if (resourceAmount >= needForOne && WoodAmount >= WoodForOne)
         {
             StartCoroutine(Spwan());
         }
-        resourceAmount -= needForOne;
-        WoodAmount -= WoodForOne;
         if (Produced == null)
         {
             Produced = Instantiate(Output);

@@ -9,10 +9,18 @@ public class HarvestableFunctionality : MonoBehaviour
     public float health;
     public Vector3 dir;
     public int amountTobeGiven;
+    public float MaxSize;
+    public float MinSize;
 
     void Start()
     {
-        
+        this.transform.eulerAngles = new Vector3(0, Random.Range(0,360), 0);
+
+        float scl = Random.Range(MinSize, MaxSize);
+        float oldscl = this.transform.localScale.x;
+        this.transform.localScale = new Vector3(scl, scl, scl);
+        health = Mathf.Round((health * scl) / oldscl);
+
     }
 
     void Update()

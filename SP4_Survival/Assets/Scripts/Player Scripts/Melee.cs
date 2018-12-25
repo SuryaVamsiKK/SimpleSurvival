@@ -8,6 +8,10 @@ public class Melee : MonoBehaviour {
     public Transform weponHolder;
     public GameObject weoponHoldingOBJ;
 
+    public GameObject DebugPoint;
+    RaycastHit hitpos;
+
+    public LayerMask masks;
     // Start is called before the first frame update
     void Start ()
     {
@@ -18,6 +22,12 @@ public class Melee : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
+        //if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hitpos, weaponHolding.meleeRange, masks))
+        //{
+        //    DebugPoint.transform.position = hitpos.point;
+        //    DebugPoint.transform.forward = hitpos.normal;
+        //}
+
         debugMelee ();
 
         if(weoponHoldingOBJ.tag != weaponHolding.Wepon.tag)
