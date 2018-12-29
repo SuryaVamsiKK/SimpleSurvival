@@ -7,9 +7,12 @@ public class MeshGenerator : MonoBehaviour
 {
 
     Mesh mesh;
+    Mesh Colmesh;
 
     Vector3[] vertices;
+    Vector3[] nonFlatShadedVerts;
     int[] triangles;
+    int[] nonFlatShadedtriangles;
     Color[] colors;
 
 
@@ -23,6 +26,7 @@ public class MeshGenerator : MonoBehaviour
     public float persistance;
     public float lacunarity;
     public AnimationCurve multiplier;
+    public bool editTerrian;
 
     public float noiseX, noiseZ;
     
@@ -34,27 +38,53 @@ public class MeshGenerator : MonoBehaviour
     float MaxNoiseHeight = 1f;
 
     [Header("Disease Values")]
+    public Transform diseaseObj;
     public Gradient DiseaseColor;
-    public Vector3 DiseasePos;
-    public float DiseaseRadius;
+    public Vector3 diseasePos; 
+    public float diseaseRadius;
 
     [Header("Prefabs")]
     public Node[] nodes;
 
-    void Start()
+    void OnValidate()
+    { 
+        if(!Application.isPlaying)
+        {
+            GetComponent<MeshCollider>().enabled = false;
+            mesh = new Mesh();
+            Colmesh = new Mesh();
+            CreateShape(scale, height, octaves, persistance, lacunarity);
+            UpdateMesh();
+            GetComponent<MeshFilter>().mesh = mesh;
+        }       
+    }
+
+    private void Start()
     {
         mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
-        GetComponent<MeshCollider>().sharedMesh = mesh;
+        Colmesh = new Mesh();
+
         CreateShape(scale, height, octaves, persistance, lacunarity);
         UpdateMesh();
+        GetComponent<MeshFilter>().mesh = mesh;
+
+        GetComponent<MeshCollider>().enabled = true;
+        GetComponent<MeshCollider>().sharedMesh = Colmesh;
         GetComponent<MeshCollider>().convex = true;
         GetComponent<MeshCollider>().convex = false;
+        diseasePos = diseaseObj.position;
+    }
+
+    private void Update()
+    {
+        diseaseRadius = diseaseObj.GetComponent<disease>().radius;
+        ColorTerrian();
     }
 
     void CreateShape(float scale, float height, int octaves, float persistance, float lacunarity)
     {
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
+        nonFlatShadedVerts = new Vector3[(xSize + 1) * (zSize + 1)];
         
         for (int z = 0, i = 0; z <= zSize; z++)
         {
@@ -86,13 +116,11 @@ public class MeshGenerator : MonoBehaviour
                 i++;
             }
         }
-
-        //for (int i = 0; i < (xSize + 1) * (zSize + 1); i++)
-        //{
-        //    vertices[i].y = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
-        //}
-
+        
         triangles = new int[xSize * zSize * 6];
+        nonFlatShadedtriangles = new int[xSize * zSize * 6];
+
+        nonFlatShadedVerts = vertices;
 
         int vert = 0;
         int tris = 0;
@@ -106,34 +134,25 @@ public class MeshGenerator : MonoBehaviour
                 triangles[tris + 3] = vert + 1;
                 triangles[tris + 4] = vert + xSize + 1;
                 triangles[tris + 5] = vert + xSize + 2;
+                
+                nonFlatShadedtriangles[tris + 0] = triangles[tris + 0];
+                nonFlatShadedtriangles[tris + 1] = triangles[tris + 1];
+                nonFlatShadedtriangles[tris + 2] = triangles[tris + 2];
+                nonFlatShadedtriangles[tris + 3] = triangles[tris + 3];
+                nonFlatShadedtriangles[tris + 4] = triangles[tris + 4];
+                nonFlatShadedtriangles[tris + 5] = triangles[tris + 5];
 
                 vert++;
                 tris += 6;
             }
             vert++;
         }
-
-        Debug.Log(vertices.Length);
-
+        
         if (FlatShadeCheck)
         {
             FlatShade();
         }
-        
-        colors = new Color[vertices.Length];
 
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            float yPose = Mathf.InverseLerp(MinNoiseHeight ,MaxNoiseHeight ,vertices[i].y);
-
-            colors[i] = TerrianColor.Evaluate(yPose);
-
-            if (Vector3.Distance(DiseasePos, vertices[i]) > DiseaseRadius)
-            {
-                float yPoseD = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
-                colors[i] = DiseaseColor.Evaluate(yPoseD) * TerrianColor.Evaluate(yPose);
-            }
-        }
     }
 
     void UpdateMesh()
@@ -142,9 +161,42 @@ public class MeshGenerator : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
-        mesh.colors = colors;
 
         mesh.RecalculateNormals();
+
+        if (Application.isPlaying)
+        {
+            Debug.Log(nonFlatShadedVerts.Length + " : " + nonFlatShadedtriangles.Length + " -> Collider Mesh");
+            Debug.Log(vertices.Length + " : " + triangles.Length + " -> Display Mesh");
+            Colmesh.Clear();
+
+            Colmesh.vertices = nonFlatShadedVerts;
+            Colmesh.triangles = nonFlatShadedtriangles;
+
+            Colmesh.RecalculateNormals();
+        }
+    }
+    
+    void ColorTerrian()
+    {
+        colors = new Color[vertices.Length];
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            float yPose = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
+
+            colors[i] = TerrianColor.Evaluate(yPose);
+
+            if (Vector3.Distance(diseasePos, vertices[i]) > diseaseRadius)
+            {
+                float yPoseD = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
+                colors[i] = DiseaseColor.Evaluate(yPoseD) * TerrianColor.Evaluate(yPose);
+            }
+        }
+        if (mesh != null)
+        {
+            mesh.colors = colors;
+        }
     }
 
     void FlatShade()
@@ -162,6 +214,7 @@ public class MeshGenerator : MonoBehaviour
 
     void NodeSpwaner(Vector3 vert)
     {
+        if(Application.isPlaying)
         for (int i = 0; i < nodes.Length; i++)
         {
             if (vert.y > nodes[i].ObjectNodeHeight.x && vert.y < nodes[i].ObjectNodeHeight.y && Random.Range(0, nodes[i].ObjectProbab) < 2)
@@ -170,6 +223,18 @@ public class MeshGenerator : MonoBehaviour
                 g.transform.position = vert;
             }
         }       
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        if (!Application.isPlaying)
+        {
+            diseasePos = diseaseObj.position;
+            diseaseRadius = diseaseObj.GetComponent<disease>().radius;
+            ColorTerrian();
+        }
+        Gizmos.DrawWireSphere(diseasePos, 2f);
     }
 }
 

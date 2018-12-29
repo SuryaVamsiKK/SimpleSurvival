@@ -212,7 +212,7 @@ public class CraftingV2 : MonoBehaviour
                         if (Vector3.Distance(hit.point, player.transform.GetChild(0).transform.position) > 2f)
                         {
                             craftedObj.transform.position = hit.point;
-                            craftedObj.transform.forward = player.transform.GetChild(0).transform.forward * craftDistance;
+                            craftedObj.transform.up = hit.normal;
                             craftedObj.transform.GetChild(4).gameObject.SetActive(false);
                             craftedObj.transform.GetChild(3).gameObject.SetActive(true);
                             placeable = true;
@@ -238,7 +238,7 @@ public class CraftingV2 : MonoBehaviour
 
 
                 //craftedObj.transform.position = player.transform.GetChild(0).position + player.transform.GetChild(0).forward * GameObject.FindGameObjectWithTag("Player").GetComponent<Controls>().SpwanDistance;
-                //0craftedObj.transform.forward = player.transform.GetChild(0).transform.forward * craftDistance;
+                //craftedObj.transform.forward = player.transform.GetChild(0).transform.forward * craftDistance;
             }
         }
     }
