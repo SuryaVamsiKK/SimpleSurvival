@@ -14,6 +14,10 @@ TagManager:
   - Level 2 Hatchet
   - Level 3 Hatchet
   - Floor
+  - Level 0 Mask
+  - Disease
+  - Level 1 Mask
+  - Level 2 Mask
   layers:
   - Default
   - TransparentFX

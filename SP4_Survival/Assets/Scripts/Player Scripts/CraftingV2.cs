@@ -196,6 +196,99 @@ public class CraftingV2 : MonoBehaviour
         player.transform.GetComponent<PlayerStats>().InventoryStatus = false;
     }
 
+    public void CraftWearable(Wearable obj)
+    {
+
+        bool[] collectedReources;
+        bool allowSubtract = false;
+        collectedReources = new bool[obj.recpie.requiredResources.Length];
+
+        if (Bag.Count == 0)
+        {
+            Debug.Log("Your Inventory is empty");
+        }
+
+        else
+        {
+            for (int i = 0; i < Bag.Count; i++)
+            {
+                for (int j = 0; j < obj.recpie.requiredResources.Length; j++)
+                {
+                    if (Bag[i].item.typeOfResource == obj.recpie.requiredResources[j].requiredResource.typeOfResource)
+                    {
+                        if (Bag[i].amount >= obj.recpie.requiredResources[j].requiredAmount)
+                        {
+                            collectedReources[j] = true;
+                        }
+                        else
+                        {
+                            collectedReources[j] = false;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < Bag.Count; i++)
+            {
+                for (int j = 0; j < obj.recpie.requiredResources.Length; j++)
+                {
+                    if (Bag[i].item.typeOfResource == obj.recpie.requiredResources[j].requiredResource.typeOfResource)
+                    {
+                        if (Bag[i].amount >= obj.recpie.requiredResources[j].requiredAmount)
+                        {
+                            for (int k = 0; k < collectedReources.Length; k++)
+                            {
+                                if (collectedReources[k] != true)
+                                {
+                                    break;
+                                }
+                                if (k == collectedReources.Length - 1 && collectedReources[k] == true)
+                                {
+                                    allowSubtract = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < Bag.Count; i++)
+            {
+                for (int j = 0; j < obj.recpie.requiredResources.Length; j++)
+                {
+                    if (Bag[i].item.typeOfResource == obj.recpie.requiredResources[j].requiredResource.typeOfResource)
+                    {
+                        if (Bag[i].amount >= obj.recpie.requiredResources[j].requiredAmount)
+                        {
+                            for (int k = 0; k < collectedReources.Length; k++)
+                            {
+                                if (allowSubtract == true)
+                                {
+                                    Bag[i].amount -= obj.recpie.requiredResources[j].requiredAmount;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < collectedReources.Length; i++)
+            {
+                if (collectedReources[i] == false)
+                {
+                    break;
+                }
+                if (i == collectedReources.Length - 1 && collectedReources[i] == true)
+                {
+                    player.GetComponent<Melee>().maskWearing = obj;
+                }
+            }
+        }
+
+        player.transform.GetComponent<PlayerStats>().InventoryStatus = false;
+    }
+
     void positionCraftable()
     {
         if(craftedObj != null)

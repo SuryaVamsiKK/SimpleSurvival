@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Weapons/Melee")]
+[CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Equipable/Melee")]
 public class MeleeWeapons : ScriptableObject
 {
     public int harvestMultiplier;

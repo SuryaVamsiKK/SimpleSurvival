@@ -36,4 +36,9 @@ public class SlotScripts : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().Craft(recpie);
     }
+
+    public void WearableCraft(Wearable recpie)
+    {
+        GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().CraftWearable(recpie);
+    }
 }

@@ -46,11 +46,16 @@ public class MeshGenerator : MonoBehaviour
     [Header("Prefabs")]
     public Node[] nodes;
 
+    public bool workingTerrain;
+
     void OnValidate()
     { 
         if(!Application.isPlaying)
         {
-            GetComponent<MeshCollider>().enabled = false;
+            if (workingTerrain)
+            {
+                GetComponent<MeshCollider>().enabled = false;
+            }
             mesh = new Mesh();
             Colmesh = new Mesh();
             CreateShape(scale, height, octaves, persistance, lacunarity);
@@ -68,11 +73,14 @@ public class MeshGenerator : MonoBehaviour
         UpdateMesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        GetComponent<MeshCollider>().enabled = true;
-        GetComponent<MeshCollider>().sharedMesh = Colmesh;
-        GetComponent<MeshCollider>().convex = true;
-        GetComponent<MeshCollider>().convex = false;
-        diseasePos = diseaseObj.position;
+        if (workingTerrain)
+        {
+            GetComponent<MeshCollider>().enabled = true;
+            GetComponent<MeshCollider>().sharedMesh = Colmesh;
+            GetComponent<MeshCollider>().convex = true;
+            GetComponent<MeshCollider>().convex = false;
+            diseasePos = diseaseObj.position;
+        }
     }
 
     private void Update()
@@ -112,7 +120,11 @@ public class MeshGenerator : MonoBehaviour
                     MinNoiseHeight = noiseHeight;
                 }
                 vertices[i] = new Vector3(x, multiplier.Evaluate(noiseHeight) * height, z);
-                NodeSpwaner(vertices[i]);
+
+                if (workingTerrain)
+                {
+                    NodeSpwaner(vertices[i]);
+                }
                 i++;
             }
         }
@@ -166,8 +178,8 @@ public class MeshGenerator : MonoBehaviour
 
         if (Application.isPlaying)
         {
-            Debug.Log(nonFlatShadedVerts.Length + " : " + nonFlatShadedtriangles.Length + " -> Collider Mesh");
-            Debug.Log(vertices.Length + " : " + triangles.Length + " -> Display Mesh");
+            //Debug.Log(nonFlatShadedVerts.Length + " : " + nonFlatShadedtriangles.Length + " -> Collider Mesh");
+            //Debug.Log(vertices.Length + " : " + triangles.Length + " -> Display Mesh");
             Colmesh.Clear();
 
             Colmesh.vertices = nonFlatShadedVerts;
@@ -181,21 +193,36 @@ public class MeshGenerator : MonoBehaviour
     {
         colors = new Color[vertices.Length];
 
-        for (int i = 0; i < vertices.Length; i++)
+        if (workingTerrain)
         {
-            float yPose = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
-
-            colors[i] = TerrianColor.Evaluate(yPose);
-
-            if (Vector3.Distance(diseasePos, vertices[i]) > diseaseRadius)
+            for (int i = 0; i < vertices.Length; i++)
             {
-                float yPoseD = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
-                colors[i] = DiseaseColor.Evaluate(yPoseD) * TerrianColor.Evaluate(yPose);
+                float yPose = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
+
+                colors[i] = TerrianColor.Evaluate(yPose);
+
+                if (Vector3.Distance(diseasePos, vertices[i]) > diseaseRadius)
+                {
+                    float yPoseD = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
+                    colors[i] = DiseaseColor.Evaluate(yPoseD) * TerrianColor.Evaluate(yPose);
+                }
+            }
+            if (mesh != null)
+            {
+                mesh.colors = colors;
             }
         }
-        if (mesh != null)
+        else
         {
-            mesh.colors = colors;
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                float yPose = Mathf.InverseLerp(MinNoiseHeight, MaxNoiseHeight, vertices[i].y);
+                colors[i] = DiseaseColor.Evaluate(yPose);
+            }
+            if (mesh != null)
+            {
+                mesh.colors = colors;
+            }
         }
     }
 
@@ -220,7 +247,7 @@ public class MeshGenerator : MonoBehaviour
             if (vert.y > nodes[i].ObjectNodeHeight.x && vert.y < nodes[i].ObjectNodeHeight.y && Random.Range(0, nodes[i].ObjectProbab) < 2)
             {
                 GameObject g = Instantiate(nodes[i].Object, transform);
-                g.transform.position = vert;
+                g.transform.position = vert + new Vector3(0f, nodes[i].additionalHeight, 0f);
             }
         }       
     }
@@ -244,4 +271,5 @@ public class Node
     public GameObject Object;
     public Vector2 ObjectNodeHeight;
     public float ObjectProbab;
+    public float additionalHeight;
 }

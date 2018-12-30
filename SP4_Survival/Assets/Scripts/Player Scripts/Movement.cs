@@ -12,22 +12,22 @@ public class Movement : MonoBehaviour
     public float camHeight;
     PlayerStats mainStats;
 
-
-    // Use this for initialization
+    
     void Start()
     {
         mainStats = this.transform.parent.GetComponent<PlayerStats>();
+        this.transform.position = GameObject.FindGameObjectWithTag("Disease").transform.position + new Vector3(0, 8f, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Cursor.lockState = CursorLockMode.Locked;
+
+        CharacterController controller = GetComponent<CharacterController>();
         if (!mainStats.InventoryStatus)
         {
             this.transform.rotation = Quaternion.Euler(0, Cam.transform.eulerAngles.y, 0);
 
-            CharacterController controller = GetComponent<CharacterController>();
             if (controller.isGrounded)
             {
                 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -45,9 +45,9 @@ public class Movement : MonoBehaviour
                 }
 
             }
-            moveDirection.y -= gravity * Time.deltaTime;
-            controller.Move(moveDirection * Time.deltaTime);
-            Cam.transform.position = this.transform.position + new Vector3(0, camHeight, 0);
         }
+        moveDirection.y -= gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
+        Cam.transform.position = this.transform.position + new Vector3(0, camHeight, 0);
     }
 }

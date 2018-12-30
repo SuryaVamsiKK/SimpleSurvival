@@ -8,18 +8,25 @@ public class Melee : MonoBehaviour {
     public Transform weponHolder;
     public GameObject weoponHoldingOBJ;
 
+    public Wearable maskWearing;
+    public Transform maskHolder;
+    public GameObject maskWearingOBJ;
+
     public GameObject DebugPoint;
     RaycastHit hitpos;
 
     public LayerMask masks;
-    // Start is called before the first frame update
+
+
     void Start ()
     {
         weoponHoldingOBJ = new GameObject();
         weoponHoldingOBJ = Instantiate(weaponHolding.Wepon, weponHolder);
-    }
 
-    // Update is called once per frame
+        maskWearingOBJ = new GameObject();
+        maskWearingOBJ = Instantiate(maskWearing.Msk, maskHolder);
+    }
+    
     void Update () 
     {
         //if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hitpos, weaponHolding.meleeRange, masks))
@@ -34,6 +41,12 @@ public class Melee : MonoBehaviour {
         {
             Destroy(weoponHoldingOBJ);
             weoponHoldingOBJ = Instantiate(weaponHolding.Wepon, weponHolder);
+        }
+
+        if (maskWearingOBJ.tag != maskWearing.Msk.tag)
+        {
+            Destroy(maskWearingOBJ);
+            weoponHoldingOBJ = Instantiate(maskWearing.Msk, maskHolder);
         }
 
         if (!GetComponent<PlayerStats>().InventoryStatus && !GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().placed)

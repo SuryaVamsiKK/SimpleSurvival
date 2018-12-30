@@ -11,20 +11,24 @@ public class disease : MonoBehaviour
 
     void Awake()
     {
-        this.transform.position = new Vector3(Random.Range(0, range.xSize), 0, Random.Range(0, range.zSize));
+        this.transform.position = new Vector3(Random.Range(radius, (range.xSize/2) + ((range.xSize / 2) - radius)), 0, Random.Range(radius, (range.xSize / 2) + ((range.xSize / 2) - radius)));
     }
     
     void Update()
     {
         this.transform.position = new Vector3(transform.position.x, GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).position.y, transform.position.z);
 
-        if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).position, this.transform.position) > radius)
+
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Melee>().maskWearing == null || GameObject.FindGameObjectWithTag("Player").GetComponent<Melee>().maskWearing.AccessLevel != MaskLevel.Level2)
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().radiation += Time.deltaTime * rateOfRadiation;
-        }
-        if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).position, this.transform.position) < radius)
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().radiation -= Time.deltaTime * rateOfRadiation;
+            if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).position, this.transform.position) > radius)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().radiation += Time.deltaTime * rateOfRadiation;
+            }
+            if (Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).position, this.transform.position) < radius)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>().radiation -= Time.deltaTime * rateOfRadiation;
+            }
         }
 
         if (radius > 0)

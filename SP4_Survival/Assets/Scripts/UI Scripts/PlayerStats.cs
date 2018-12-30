@@ -137,9 +137,12 @@ public class PlayerStats : MonoBehaviour
     }
     void inventory()
     {
-        if (Input.GetKeyDown(GetComponent<Controls>().Inventory))
+        if (!transform.GetChild(2).GetChild(1).GetComponent<LoadingScreen>().loadGame)
         {
-            InventoryStatus = !InventoryStatus;
+            if (Input.GetKeyDown(GetComponent<Controls>().Inventory))
+            {
+                InventoryStatus = !InventoryStatus;
+            }
         }
         if (InventoryStatus == true)
         {
