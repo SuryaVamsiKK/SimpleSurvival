@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766a3fc7cbfd0ec4f935c487b7d15e4f, type: 3}
   m_Name: Plastic Mask
   m_EditorClassIdentifier: 
-  Msk: {fileID: 0}
-  Icon: {fileID: 0}
-  recpie: {fileID: 0}
+  Msk: {fileID: 2773085938342055093, guid: 9236c85435d64bc4b8290eda135c7fa4, type: 3}
+  Icon: {fileID: 21300000, guid: 6cf63c41fda6aba4487c901ecaad9b60, type: 3}
+  recpie: {fileID: 11400000, guid: a31b12ef7749e16489a72397f2530816, type: 2}
   AccessLevel: 1

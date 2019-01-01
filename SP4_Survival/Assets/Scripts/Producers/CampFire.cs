@@ -6,17 +6,14 @@ using UnityEngine.VFX;
 
 public class CampFire : MonoBehaviour
 {
-    public Resource need = Resource.Wood;
-    public Resource woodNeed = Resource.Wood;
+    public Produceable Resource;
+    public List<inventoryItems> Bag = new List<inventoryItems>();
 
     public float productionTime;
-    public int needForOne;
-    public int WoodForOne;
-    public GameObject Output;
-    public int resourceAmount;
-    public int WoodAmount;
     public GameObject Produced;
     public GameObject Campfire;
+
+    public int que = 0;
 
     public bool started = false;
     void Start()
@@ -26,73 +23,26 @@ public class CampFire : MonoBehaviour
     
     void Update()
     {
-
-        if (resourceAmount >= needForOne && started == false && WoodAmount >= WoodForOne)
-        {
-            StartCoroutine(Spwan());
-            started = true;
-        }
-
-        if (resourceAmount < needForOne && WoodAmount < WoodForOne)
-        {
-            started = false;
-            Campfire.SetActive(false);
-        }
-
+        Bag = InventoryV2.instance.Bag;
+        
         if(GetComponent<ScriptActiivation>().interacted)
         {
-            for (int i = 0; i < InventoryV2.instance.Bag.Count; i++)
-            {
-                if (InventoryV2.instance.Bag[i].item.typeOfResource == need)
-                {
-                    if (InventoryV2.instance.Bag[i].amount >= needForOne)
-                    {
-                        InventoryV2.instance.Bag[i].amount -= needForOne;
-                        resourceAmount += needForOne;
-                    }
-                }
-            }
-            for (int i = 0; i < InventoryV2.instance.Bag.Count; i++)
-            {
-                if (InventoryV2.instance.Bag[i].item.typeOfResource == woodNeed)
-                {
-                    if (InventoryV2.instance.Bag[i].amount >= WoodForOne)
-                    {
-                        InventoryV2.instance.Bag[i].amount -= WoodForOne;
-                        WoodAmount += WoodForOne;
-                    }
-                }
-            }
+            Craft(Resource);
             GetComponent<ScriptActiivation>().interacted = false;
         }
     }
 
-    //void OnTriggerStay(Collider other)
-    //{
-    //    if (this.GetComponent<ScriptActiivation>().enabled)
-    //    {
-    //        if (other.gameObject.tag == "Player")
-    //        {
-    //            if (Input.GetKeyDown(other.transform.parent.GetComponent<Controls>().PickUP))
-    //            {
-    //            }
-    //        }
-    //    }
-    //}
-
-    IEnumerator Spwan()
+    IEnumerator Spwan(float craftTime)
     {
-        Campfire.SetActive(true);
-        yield return new WaitForSeconds(productionTime);
-        resourceAmount -= needForOne;
-        WoodAmount -= WoodForOne;
-        if (resourceAmount >= needForOne && WoodAmount >= WoodForOne)
+        yield return new WaitForSeconds(craftTime);
+        que--;
+        if(que <= 0)
         {
-            StartCoroutine(Spwan());
+            Campfire.SetActive(false);
         }
         if (Produced == null)
         {
-            Produced = Instantiate(Output);
+            Produced = Instantiate(Resource.output);
             Produced.GetComponent<PickUp>().amount = 1;
             Produced.transform.position = this.transform.GetChild(1).transform.position;
             yield break;
@@ -110,4 +60,81 @@ public class CampFire : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawSphere(this.transform.GetChild(1).position, 0.25f);
     }
+
+
+    public void Craft(Produceable obj)
+    {
+        bool[] collectedReources;
+        collectedReources = new bool[obj.requiredResources.Length];
+
+        for (int i = 0; i < collectedReources.Length; i++)
+        {
+            collectedReources[i] = false;
+        }
+
+        if (Bag.Count == 0)
+        {
+            Debug.Log("Your Inventory is empty");
+        }
+
+        else
+        {
+            for (int i = 0; i < Bag.Count; i++)
+            {
+                for (int j = 0; j < obj.requiredResources.Length; j++)
+                {
+                    if (Bag[i].item.typeOfResource == obj.requiredResources[j].requiredResource.typeOfResource)
+                    {
+                        if (Bag[i].amount >= obj.requiredResources[j].requiredAmount)
+                        {
+                            collectedReources[j] = true;
+                        }
+                        else
+                        {
+                            collectedReources[j] = false;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < Bag.Count; i++)
+            {
+                for (int j = 0; j < obj.requiredResources.Length; j++)
+                {
+                    if (Bag[i].item.typeOfResource == obj.requiredResources[j].requiredResource.typeOfResource)
+                    {
+                        if (Bag[i].amount >= obj.requiredResources[j].requiredAmount)
+                        {
+                            for (int k = 0; k < collectedReources.Length; k++)
+                            {
+                                if(collectedReources[k] == false)
+                                {
+                                    break;
+                                }
+                                if (k == collectedReources.Length - 1 && collectedReources[k] == true)
+                                {
+                                    Bag[i].amount -= obj.requiredResources[j].requiredAmount;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < collectedReources.Length; i++)
+            {
+                if (collectedReources[i] == false)
+                {
+                    break;
+                }
+                if (i == collectedReources.Length - 1 && collectedReources[i] == true)
+                {
+                    Campfire.SetActive(true);
+                    que++;
+                    StartCoroutine(Spwan(productionTime * que));
+                }
+            }         
+        }
+    }    
 }

@@ -72,6 +72,10 @@ public class CraftingV2 : MonoBehaviour
                         {
                             for (int k = 0; k < collectedReources.Length; k++)
                             {
+                                if (collectedReources[k] == false)
+                                {
+                                    break;
+                                }
                                 if (k == collectedReources.Length - 1 && collectedReources[k] == true)
                                 {
                                     Bag[i].amount -= obj.requiredResources[j].requiredAmount;

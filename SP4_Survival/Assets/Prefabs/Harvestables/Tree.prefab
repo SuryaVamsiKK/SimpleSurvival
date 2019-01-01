@@ -81,7 +81,7 @@ MonoBehaviour:
   destoryTime: 2
   health: 100
   dir: {x: 0, y: 0, z: 0}
-  amountTobeGiven: 2
+  amountTobeGiven: 1
   MaxSize: 1
   MinSize: 0.4
 --- !u!54 &7356228669707663594

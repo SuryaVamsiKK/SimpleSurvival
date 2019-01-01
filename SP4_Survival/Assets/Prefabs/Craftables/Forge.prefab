@@ -7407,18 +7407,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6649d84795629247b8d90af8eb3f66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  need: 5
-  woodNeed: 0
+  Resource: {fileID: 11400000, guid: b6ec10b47ba54b4429d78ff28cd8a737, type: 2}
+  Bag: []
   productionTime: 2
-  needForOne: 1
-  WoodForOne: 2
   Output: {fileID: 1124557537018251536, guid: f844ebc9644a2f24eb25d08689c0e01f, type: 3}
-  resourceAmount: 0
-  WoodAmount: 0
   Produced: {fileID: 0}
-  minFire: 0
-  MaxFire: 50000
   Campfire: {fileID: 7526252370663473001}
+  que: 0
+  started: 0
 --- !u!54 &1173559950143715078
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7460,7 +7456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25af7ddb385ad24e83e8ba74602316b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 0
   interacted: 0
 --- !u!1 &8642015149589402459
 GameObject:

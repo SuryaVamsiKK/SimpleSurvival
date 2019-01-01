@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Recpie", menuName = "Recpie")]
+[CreateAssetMenu(fileName = "new Recpie", menuName = "Recpie/Craftable")]
 public class Recipies : ScriptableObject
 {
     public GameObject craftable;

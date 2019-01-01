@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Melee : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class Melee : MonoBehaviour {
     RaycastHit hitpos;
 
     public LayerMask masks;
+    public GameObject playerUI;
 
 
     void Start ()
@@ -47,6 +49,34 @@ public class Melee : MonoBehaviour {
         {
             Destroy(maskWearingOBJ);
             weoponHoldingOBJ = Instantiate(maskWearing.Msk, maskHolder);
+        }
+
+
+        if (maskWearingOBJ.tag == maskWearing.Msk.tag)
+        {
+            if (maskWearing.Icon != null)
+            {
+                playerUI.transform.GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetComponent<Image>().enabled = true;
+                playerUI.transform.GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetComponent<Image>().sprite = maskWearing.Icon;
+            }
+        }
+
+        if (weoponHoldingOBJ.tag == weaponHolding.Wepon.tag)
+        {
+            if (weaponHolding.Icon != null)
+            {
+                playerUI.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>().enabled = true;
+                playerUI.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = weaponHolding.Icon;
+            }
+        }
+
+
+        if (weoponHoldingOBJ.tag == weaponHolding.Wepon.tag)
+        {
+            if (maskWearing.Icon != null)
+            {
+                playerUI.transform.GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetComponent<Image>().sprite = maskWearing.Icon;
+            }
         }
 
         if (!GetComponent<PlayerStats>().InventoryStatus && !GameObject.FindGameObjectWithTag("Inventory").GetComponent<CraftingV2>().placed)

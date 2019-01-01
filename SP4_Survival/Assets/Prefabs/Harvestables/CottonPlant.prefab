@@ -70,17 +70,17 @@ PrefabInstance:
     - target: {fileID: 7761280262390720164, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 7761280262390720164, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 7761280262390720164, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 36398012432454023, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
@@ -91,17 +91,17 @@ PrefabInstance:
     - target: {fileID: 36398012432454023, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
       propertyPath: MinSize
-      value: 0.15
+      value: 0.155
       objectReference: {fileID: 0}
     - target: {fileID: 36398012432454023, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
       propertyPath: MaxSize
-      value: 0.45
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 36398012432454023, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}
       propertyPath: health
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2842596282983675022, guid: b06978aac6782df45ae9ad892ed2c22f,
         type: 3}

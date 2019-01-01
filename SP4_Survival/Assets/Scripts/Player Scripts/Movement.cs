@@ -21,8 +21,6 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-
         CharacterController controller = GetComponent<CharacterController>();
         if (!mainStats.InventoryStatus)
         {
@@ -41,10 +39,15 @@ public class Movement : MonoBehaviour
 
                 if (Input.GetKey(Controls.instance.Run) && mainStats.stamina > 0)
                 {
-                    moveDirection *= speed * 0.5f;
+                    moveDirection *= speed * 0.35f;
                 }
-
             }
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+        else
+        {
+            moveDirection.x = 0;
+            moveDirection.z = 0;
         }
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);

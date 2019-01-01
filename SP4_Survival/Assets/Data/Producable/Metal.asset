@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d9aa38b39d1ad4291c260db2ab6adc, type: 3}
+  m_Name: Metal
+  m_EditorClassIdentifier: 
+  producable: 6
+  requiredResources:
+  - requiredResource: {fileID: 11400000, guid: dd0b35c5e264b564283d62153db80fb4, type: 2}
+    requiredAmount: 2
+  - requiredResource: {fileID: 11400000, guid: f8021cb1ba87e364db5b31cf1b351fb2, type: 2}
+    requiredAmount: 2
+  output: {fileID: 1124557537018251536, guid: f844ebc9644a2f24eb25d08689c0e01f, type: 3}

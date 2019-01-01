@@ -67,21 +67,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3993298559510866592, guid: f8e0dd2df247fc94cad092261d64c783,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3993298559510866592, guid: f8e0dd2df247fc94cad092261d64c783,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3993298559510866592, guid: f8e0dd2df247fc94cad092261d64c783,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3993298559510866605, guid: f8e0dd2df247fc94cad092261d64c783,
         type: 3}
       propertyPath: typeOf
@@ -93,20 +78,20 @@ PrefabInstance:
       propertyPath: amount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7223512509651141759, guid: f8e0dd2df247fc94cad092261d64c783,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7223512509651141759, guid: f8e0dd2df247fc94cad092261d64c783,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1097353817421611933, guid: f8e0dd2df247fc94cad092261d64c783,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223512509651141759, guid: f8e0dd2df247fc94cad092261d64c783,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223512509651141759, guid: f8e0dd2df247fc94cad092261d64c783,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8e0dd2df247fc94cad092261d64c783, type: 3}

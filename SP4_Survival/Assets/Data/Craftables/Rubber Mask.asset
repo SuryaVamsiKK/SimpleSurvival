@@ -16,9 +16,7 @@ MonoBehaviour:
   requiredResources:
   - requiredResource: {fileID: 11400000, guid: b6b08f9cdb7e03046b53608010e9b5d2, type: 2}
     requiredAmount: 30
-  - requiredResource: {fileID: 11400000, guid: 50c44039e2fda3947b310e87eae19c9a, type: 2}
-    requiredAmount: 2
-  - requiredResource: {fileID: 11400000, guid: c2e790235d5f6b14198847da10117ec1, type: 2}
-    requiredAmount: 4
   - requiredResource: {fileID: 11400000, guid: 9751432a4703b93438c9a1c9ad521f7c, type: 2}
+    requiredAmount: 4
+  - requiredResource: {fileID: 11400000, guid: c2e790235d5f6b14198847da10117ec1, type: 2}
     requiredAmount: 4
