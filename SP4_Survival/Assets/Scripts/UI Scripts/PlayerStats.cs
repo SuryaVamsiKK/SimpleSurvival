@@ -157,12 +157,14 @@ public class PlayerStats : MonoBehaviour
         if (InventoryStatus == true)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             Inventory.SetActive(true);
             Inventory.transform.parent.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             Inventory.transform.GetChild(2).gameObject.SetActive(true);
             Inventory.transform.parent.GetChild(1).gameObject.SetActive(true);
             Inventory.transform.GetChild(3).gameObject.SetActive(false);
