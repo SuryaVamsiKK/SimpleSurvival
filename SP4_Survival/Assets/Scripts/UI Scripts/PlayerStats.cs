@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -42,6 +43,10 @@ public class PlayerStats : MonoBehaviour
 
     bool isSprinting, isIdel;
 
+    [Header("Scene Details")]
+    public string winningScene;
+    public string gameOverScene;
+
     void Start()
     {
         staminaBar.fillRect.GetComponent<Image>().color = staminaColor;
@@ -58,6 +63,11 @@ public class PlayerStats : MonoBehaviour
         inventory();
         StaminaCalculation();
         HealthCalculation();
+
+        if(health <= 0)
+        {
+            SceneManager.LoadScene(gameOverScene);
+        }
     }
 
     float ClampStats(float stat, float max)

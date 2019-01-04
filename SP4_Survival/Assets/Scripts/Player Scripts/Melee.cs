@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Melee : MonoBehaviour {
 
+    [Header("Weapon")]
     public MeleeWeapons weaponHolding;
     public Transform weponHolder;
     public GameObject weoponHoldingOBJ;
 
+    [Header("Mask")]
     public Wearable maskWearing;
     public Transform maskHolder;
     public GameObject maskWearingOBJ;
 
+    [Header("Debug")]
+    public bool debug = false;
     public GameObject DebugPoint;
     RaycastHit hitpos;
-
     public LayerMask masks;
     public GameObject playerUI;
 
@@ -31,11 +35,14 @@ public class Melee : MonoBehaviour {
     
     void Update () 
     {
-        //if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hitpos, weaponHolding.meleeRange, masks))
-        //{
-        //    DebugPoint.transform.position = hitpos.point;
-        //    DebugPoint.transform.forward = hitpos.normal;
-        //}
+        if (debug == true)
+        {
+            if (Physics.Raycast(transform.GetChild(1).position, transform.GetChild(1).TransformDirection(Vector3.forward), out hitpos, weaponHolding.meleeRange, masks))
+            {
+                DebugPoint.transform.position = hitpos.point;
+                DebugPoint.transform.forward = hitpos.normal;
+            }
+        }
 
         debugMelee ();
 
@@ -69,7 +76,6 @@ public class Melee : MonoBehaviour {
                 playerUI.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = weaponHolding.Icon;
             }
         }
-
 
         if (weoponHoldingOBJ.tag == weaponHolding.Wepon.tag)
         {
@@ -109,6 +115,11 @@ public class Melee : MonoBehaviour {
             {
                 weoponHoldingOBJ.GetComponent<Animator>().SetBool("Attacked", false);
             }
+        }
+
+        if(maskWearingOBJ.tag == "Level 2 Mask")
+        {
+            SceneManager.LoadScene(this.GetComponent<PlayerStats>().winningScene);
         }
     }
 
